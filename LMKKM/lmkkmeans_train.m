@@ -31,6 +31,7 @@ for iter = 1:parameters.iteration_count
             Theta = reshape(res.sol.itr.xx, N, P);
             mskqpopt_status = 1;
         else
+            Z = ones(nSmp, nKernel)/nKernel;
             mskqpopt_status = 0;
         end
     else

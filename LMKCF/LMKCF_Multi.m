@@ -114,6 +114,7 @@ while tryNo < nRepeat
                 Z = reshape(res.sol.itr.xx, nSmp, nKernel);
                 mskqpopt_status = 1;
             else
+                Z = ones(nSmp, nKernel)/nKernel;
                 mskqpopt_status = 0;
             end
         else
