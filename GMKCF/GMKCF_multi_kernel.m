@@ -51,7 +51,7 @@ obj_final = [];
 kw_aio = cell(nRepeat, 1);
 disp(['Total number of Kernels: ', num2str(length(kernel_list)) '!']);
 
-disp(['GMKCF on multi kernel begin ...']);
+disp('GMKCF on multi kernel begin ...');
 gmkcf_res_file = fullfile(res_dir, [dataset, '_res_gmkcf.mat']);
 if exist(gmkcf_res_file, 'file')
     load(gmkcf_res_file, 'res_gmkcf_aio');
@@ -61,7 +61,7 @@ else
         t_start = clock;
         disp(['GMKCF ',  num2str(iRepeat), ' of ' num2str(nRepeat), ' iterations begin ...']);
 
-        [~, V, w_final, nIter_final, objhistory_final] = GMKCF_Multi(Ks, nClass, struct('maxIter', [], 'nRepeat', 1), [], []);
+        [~, V, w_final, ~, objhistory_final] = GMKCF_Multi(Ks, nClass, struct('maxIter', [], 'nRepeat', 1), [], []);
         label_gmkcf = litekmeans(V, nClass, 'maxIter', 1000, 'Replicates', 20);
         gmkcf_res = [gmkcf_res; ClusteringMeasure(y, label_gmkcf)];%#ok<AGROW>
         obj_final = [obj_final; objhistory_final(end)];%#ok<AGROW>
@@ -72,16 +72,16 @@ else
     end
     if size(gmkcf_res, 1) > 1
         [~, minIdx] = min(obj_final);
-        gmkcf_res_obj = gmkcf_res(minIdx,:);
-        kw_obj = kw_aio{iRepeat};
+        gmkcf_res_obj = gmkcf_res(minIdx,:);%#ok
+        kw_obj = kw_aio{iRepeat};%#ok
         gmkcf_res_mean = mean(gmkcf_res);
     else
         gmkcf_res_mean = gmkcf_res;
     end
     save(gmkcf_res_file,  'gmkcf_res_mean');
-    disp(['GMKCF on multi kernel done']);
+    disp('GMKCF on multi kernel done');
     
-    res_gmkcf_aio = gmkcf_res_mean;
+    res_gmkcf_aio = gmkcf_res_mean;%#ok
     
     clear Ks K gmkcf_res_mean gmkcf_res_obj;
     save(fullfile(res_dir, [dataset, '_res_gmkcf_multi_kernel.mat']), 'res_gmkcf_aio', 'kernel_list');

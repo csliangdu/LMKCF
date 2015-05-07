@@ -17,9 +17,6 @@ function [U_final, V_final, Z_final, nIter_final, objhistory_final] = LMKCF_Mult
 %     Version: 1.0
 %     Last modified: 2015-04-15 21:49:42
 %**************************************************
-if isempty(which('mskqpopt'))
-    addpath('C:\Program Files\Mosek\7\toolbox\r2013a');
-end
 if ~exist('options', 'var')
     options = [];
 end
@@ -91,6 +88,7 @@ while tryNo < nRepeat
     tryNo = tryNo+1;
     nIter = 0;
     maxErr = 1;
+    mskqpopt_status = 1;
     
     while(maxErr > differror)
         % ===================== update U/V ========================
@@ -104,7 +102,7 @@ while tryNo < nRepeat
         clear UV;
         
         
-        if 0
+        if ~isempty(which('mskqpopt.m')) && nSmp * nKernel < 3000 && mskqpopt_status > 0
             Q = zeros(nSmp * nKernel, nSmp * nKernel);
             for iKernel = 1:nKernel
                 start_index = (iKernel - 1) * nSmp + 1;
@@ -114,8 +112,9 @@ while tryNo < nRepeat
             res = mskqpopt(Q, zeros(nSmp * nKernel, 1), repmat(eye(nSmp, nSmp), 1, nKernel), ones(nSmp, 1), ones(nSmp, 1), zeros(nSmp * nKernel, 1), ones(nSmp * nKernel, 1), [], 'minimize echo(0)');
             if isfield(res, 'sol')
                 Z = reshape(res.sol.itr.xx, nSmp, nKernel);
+                mskqpopt_status = 1;
             else
-                warning('mosek failed');
+                mskqpopt_status = 0;
             end
         else
             Km = zeros(nSmp, nSmp, nKernel);

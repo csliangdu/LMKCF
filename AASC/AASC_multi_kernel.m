@@ -35,7 +35,7 @@ if ~exist(res_dir, 'dir')
 end
 
 nKernel = length(kernel_list);
-Ks = zeros(length(y), length(y), nKernel); 
+Ks = zeros(length(y), length(y), nKernel);
 
 for iKernel = 1:length(kernel_list)
     iFile = kernel_list{iKernel};
@@ -45,47 +45,42 @@ for iKernel = 1:length(kernel_list)
     load(fullfile(kernel_dir, iFile), 'K');
     Ks(:,:,iKernel) = K;
 end
-clear K; 
+clear K;
 
-aasc_res_max = [];
-aasc_res_km = [];
-aasc_res_uni_km = [];
+aasc_res = [];
 obj_final = [];
 
 disp(['Total number of Kernels: ', num2str(length(kernel_list)) '!']);
 
-disp(['AASC on multi kernel begin ...']);
+disp('AASC on multi kernel begin ...');
 
 aasc_res_file = fullfile(res_dir, [dataset, '_res_aasc.mat']);
 if exist(aasc_res_file, 'file')
-    load(aasc_res_file, 'aasc_res_max', 'aasc_res_km', 'aasc_res_uni_km', 'obj_final');
+    load(aasc_res_file, 'aasc_res', 'obj_final');
 else
-	rng('default');
-	for iRepeat = 1:nRepeat
-		t_start = clock;
-		disp(['AASC ',  num2str(iRepeat), ' of ' num2str(nRepeat), ' iterations begin ...']);
-		
-		V = AASC(Ks, nClass);
-		aasc_res_max = [aasc_res_max; [0,0,0]];%#ok<AGROW>
-		label_km = litekmeans(V, nClass, 'maxIter', 1000, 'Replicates', 10);
-		aasc_res_km = [aasc_res_km; ClusteringMeasure(y, label_km)];%#ok<AGROW>
-		label_uni_km = litekmeans(NormalizeFea(V, 1), nClass, 'maxIter', 1000, 'Replicates', 10);
-		aasc_res_uni_km = [aasc_res_uni_km; ClusteringMeasure(y, label_uni_km)];%#ok<AGROW>
-		obj_final = [obj_final; 0];%#ok<AGROW>
-		t_end = clock;
-		disp(['AASC ',  num2str(iRepeat), ' of ' num2str(nRepeat), ' iterations done.']);
-		disp(['AASC exe time: ', num2str(etime(t_end, t_start))]);
-	end
-    save(aasc_res_file, 'aasc_res_max', 'aasc_res_km', 'aasc_res_uni_km', 'obj_final');
+    rng('default');
+    for iRepeat = 1:nRepeat
+        t_start = clock;
+        disp(['AASC ',  num2str(iRepeat), ' of ' num2str(nRepeat), ' iterations begin ...']);
+        
+        V = AASC(Ks, nClass);
+        label_aasc = litekmeans(NormalizeFea(V, 1), nClass, 'maxIter', 1000, 'Replicates', 20);
+        aasc_res = [aasc_res; ClusteringMeasure(y, label_aasc)];%#ok<AGROW>
+        obj_final = [obj_final; 0];%#ok<AGROW>
+        t_end = clock;
+        disp(['AASC ',  num2str(iRepeat), ' of ' num2str(nRepeat), ' iterations done.']);
+        disp(['AASC exe time: ', num2str(etime(t_end, t_start))]);
+    end
+    save(aasc_res_file, 'aasc_res', 'obj_final');
 end
 
-disp(['AASC on multi kernel done']);
-if size(aasc_res_max,1) > 1
-	res_aasc_aio = [mean(aasc_res_max), mean(aasc_res_km), mean(aasc_res_uni_km)];
+disp('AASC on multi kernel done');
+if size(aasc_res,1) > 1
+    res_aasc_aio = mean(aasc_res); %#ok
 else
-	res_aasc_aio = [aasc_res_max, aasc_res_km, aasc_res_uni_km];
+    res_aasc_aio = aasc_res;%#ok
 end
-clear K aasc_res_max aasc_res_km aasc_res_uni_km;
+clear K aasc_res;
 
 save(fullfile(res_dir, [dataset, '_res_aasc_multi_kernel.mat']), 'res_aasc_aio', 'kernel_list');
 end

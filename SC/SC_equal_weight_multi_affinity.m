@@ -51,22 +51,22 @@ disp(['SC on equal weighted multi kernel begin ...']);
 ew_sc_res_file = fullfile(res_dir, [dataset, '_res_ew_sc.mat']);
 if ~exist(ew_sc_res_file, 'file')
     t_start = clock;
-    [ew_sc_res_max, ew_sc_res_km, ew_sc_res_uni_km] = SC_single_affinity(Ka, y, fullfile(res_dir, [dataset, '_ewmk']), nRepeat);
+    ew_sc_res = SC_single_affinity(Ka, y, fullfile(res_dir, [dataset, '_ewmk']), nRepeat);
     t_end = clock;
     disp(['SC exe time: ', num2str(etime(t_end, t_start))]);
-    save(ew_sc_res_file, 'ew_sc_res_max', 'ew_sc_res_km', 'ew_sc_res_uni_km');
+    save(ew_sc_res_file, 'ew_sc_res');
 else
-    load(ew_sc_res_file, 'ew_sc_res_max', 'ew_sc_res_km', 'ew_sc_res_uni_km');
+    load(ew_sc_res_file, 'ew_sc_res');
 end
 disp(['SC on on equal weighted multi kernel done']);
 
-if size(ew_sc_res_km, 1) > 1
-	res_ew_sc_aio = [mean(ew_sc_res_max), mean(ew_sc_res_km), mean(ew_sc_res_uni_km)];
+if size(ew_sc_res, 1) > 1
+	res_ew_sc_aio = mean(ew_sc_res);
 else
-    res_ew_sc_aio = [ew_sc_res_max, ew_sc_res_km, ew_sc_res_uni_km];
+    res_ew_sc_aio = ew_sc_res;
 end
 
-clear K ew_sc_res_max ew_sc_res_km ew_sc_res_uni_km;
+clear K ew_sc_res;
 
 save(fullfile(res_dir, [dataset, '_res_sc_ew_kernel.mat']), 'res_ew_sc_aio', 'kernel_list');
 end

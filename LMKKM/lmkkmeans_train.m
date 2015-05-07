@@ -7,13 +7,19 @@ P = size(Km, 3);
 Theta = ones(N, P) / P;
 K_Theta = calculate_localized_kernel_theta(Km, Theta);
 
+mskqpopt_status = 1;
+
 opt.disp = 0;
 objective = zeros(parameters.iteration_count, 1);
 for iter = 1:parameters.iteration_count
     % fprintf(1, 'running iteration %d...\n', iter);
-    [H, ~] = eigs(K_Theta, parameters.cluster_count, 'la', opt);
+    [eigvec, eigval] = eig(K_Theta);
+    eigval = diag(eigval);
+    [~, eig_idx] = sort(eigval, 'descend');
+    H = eigvec(:, eig_idx(1:parameters.cluster_count));
+    %[H, ~] = eigs(K_Theta, parameters.cluster_count, 'la', opt);
     HHT = H * H';
-    if 0
+    if ~isempty(which('mskqpopt.m')) && N*P < 3000 && mskqpopt_status > 0
         Q = zeros(N * P, N * P);
         for m = 1:P
             start_index = (m - 1) * N + 1;
@@ -21,7 +27,12 @@ for iter = 1:parameters.iteration_count
             Q(start_index:end_index, start_index:end_index) = eye(N, N) .* Km(:, :, m) - HHT .* Km(:, :, m);
         end
         res = mskqpopt(Q, zeros(N * P, 1), repmat(eye(N, N), 1, P), ones(N, 1), ones(N, 1), zeros(N * P, 1), ones(N * P, 1), [], 'minimize echo(0)');
-        Theta = reshape(res.sol.itr.xx, N, P);
+        if isfield(res, 'sol')
+            Theta = reshape(res.sol.itr.xx, N, P);
+            mskqpopt_status = 1;
+        else
+            mskqpopt_status = 0;
+        end
     else
         Ks = zeros(N, N, P);
         for m = 1:P

@@ -9,4 +9,4 @@ BuildKernels(dataset, kernel_type);
 
 cd(dir1);
 SC_all_affinity(dataset, kernel_type, nRepeat);
-SC_equal_weight_multi_affinity(dataset, kernel_type, nRepeat);
+% SC_equal_weight_multi_affinity(dataset, kernel_type, nRepeat);

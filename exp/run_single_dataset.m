@@ -7,7 +7,7 @@ addpath(fullfile(pwd, '..', 'KCF'));
 addpath(fullfile(pwd, '..', 'LCCF'));
 % addpath(fullfile(pwd, '..', 'LCF'));
 addpath(fullfile(pwd, '..', 'MACF'));
-% addpath(fullfile(pwd, '..', 'AASC'));
+addpath(fullfile(pwd, '..', 'AASC'));
 addpath(fullfile(pwd, '..', 'Coreg'));
 % addpath(fullfile(pwd, '..', 'MKKM'));
 addpath(fullfile(pwd, '..', 'LMKKM'));
@@ -34,9 +34,7 @@ LMKCF_single_data(dataset, kernel_type, nRepeat);
 
 SC_single_data(dataset, kernel_type, nRepeat);
 coreg_centroid_single_data(dataset, kernel_type, nRepeat);
-
-% L21KKM_single_data(dataset, kernel_type, nRepeat);
-
+AASC_single_data(dataset, kernel_type, nRepeat);
 
 % send email 
 if ~exist('myusername', 'var') || isempty(myusername)
@@ -65,7 +63,7 @@ rmpath(fullfile(pwd, '..', 'KCF'));
 rmpath(fullfile(pwd, '..', 'LCCF'));
 % rmpath(fullfile(pwd, '..', 'LCF'));
 rmpath(fullfile(pwd, '..', 'MACF'));
-% rmpath(fullfile(pwd, '..', 'AASC'));
+rmpath(fullfile(pwd, '..', 'AASC'));
 % rmpath(fullfile(pwd, '..', 'MKKM'));
 rmpath(fullfile(pwd, '..', 'Coreg'));
 rmpath(fullfile(pwd, '..', 'LMKKM'));
