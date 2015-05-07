@@ -47,21 +47,21 @@ for iAffinity = 1:length(kernel_list)
     sc_res_file = fullfile(res_dir, [iFile(1:end-4), '_res_sc.mat']);
     if ~exist(sc_res_file, 'file')
         t_start = clock;
-        [sc_res_max, sc_res_km, sc_res_uni_km] = SC_single_affinity(K, y, fullfile(res_dir, iFile(1:end-4)), nRepeat);
+        sc_res = SC_single_affinity(K, y, fullfile(res_dir, iFile(1:end-4)), nRepeat);
         t_end = clock;
         disp(['SC exe time: ', num2str(etime(t_end, t_start))]);
-        save(sc_res_file, 'sc_res_max', 'sc_res_km', 'sc_res_uni_km');
+        save(sc_res_file, 'sc_res');
     else
-        load(sc_res_file, 'sc_res_max', 'sc_res_km', 'sc_res_uni_km');
+        load(sc_res_file, 'sc_res');
     end
     disp(['SC on ',  num2str(iAffinity), ' of ' num2str(length(kernel_list)), ' Affinity(',  iFile(1:end-4), ') done']);
-    if size(sc_res_max, 1) > 1
-		res_sc_aio = [res_sc_aio; [mean(sc_res_max), mean(sc_res_km), mean(sc_res_uni_km)]]; %#ok<AGROW>
-	else
-		res_sc_aio = [res_sc_aio; [sc_res_max, sc_res_km, sc_res_uni_km]]; %#ok<AGROW>
-	end
+    if size(sc_res, 1) > 1
+        res_sc_aio = [res_sc_aio; mean(sc_res)]; %#ok<AGROW>
+    else
+        res_sc_aio = [res_sc_aio; sc_res]; %#ok<AGROW>
+    end
     
-    clear K sc_res_max sc_res_km sc_res_uni_km;
+    clear K sc_res;
 end
 
 save(fullfile(res_dir, [dataset, '_res_sc_all_kernel.mat']), 'res_sc_aio', 'kernel_list');

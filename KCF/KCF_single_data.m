@@ -9,4 +9,4 @@ BuildKernels(dataset, kernel_type);
 
 cd(dir1);
 KCF_all_kernel(dataset, kernel_type, nRepeat);
-KCF_equal_weight_multi_kernel(dataset, kernel_type, nRepeat);
+% KCF_equal_weight_multi_kernel(dataset, kernel_type, nRepeat);

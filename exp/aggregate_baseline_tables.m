@@ -1,7 +1,7 @@
 function aggregate_baseline_tables(dataset, kernel_type)
 %
 prefix = fullfile(pwd, [dataset, '_res'], [dataset, '_res']);
-apps = {'kkm', 'sc', 'kcf', 'lccf', 'lcf', 'macf'};
+apps = {'kkm', 'sc', 'kcf', 'lccf', 'macf'};
 
 
 % load results with single kernel
@@ -20,19 +20,19 @@ if iscell(kernel_type)
 end
 k_idx = unique(k_idx);
 
-r_s = [res_kkm_aio(k_idx,:); res_sc_aio(k_idx,7:9); res_kcf_aio(k_idx,:); res_lccf_aio(k_idx,:); res_lcf_aio(k_idx,:); res_macf_aio(k_idx,:)];
+r_s = [res_kkm_aio(k_idx,:); res_sc_aio(k_idx,:); res_kcf_aio(k_idx,:); res_lccf_aio(k_idx,:);  res_macf_aio(k_idx,:)];
 
 % load results with equal weighted kernel
-for app = apps
-    res_file = strcat(prefix, '_', app{1}, '_ew_kernel.mat');
-    if exist(res_file, 'file');
-        eval(sprintf('load(res_file, ''%s'', ''kernel_list'');', ['res_ew_', app{1}, '_aio']));
-    end
-end
-r_ew = [res_ew_kkm_aio; res_ew_sc_aio(7:9); res_ew_kcf_aio;res_ew_lccf_aio;res_ew_lcf_aio;res_ew_macf_aio];
+% for app = apps
+%     res_file = strcat(prefix, '_', app{1}, '_ew_kernel.mat');
+%     if exist(res_file, 'file');
+%         eval(sprintf('load(res_file, ''%s'', ''kernel_list'');', ['res_ew_', app{1}, '_aio']));
+%     end
+% end
+% r_ew = [res_ew_kkm_aio; res_ew_sc_aio(7:9); res_ew_kcf_aio;res_ew_lccf_aio;res_ew_macf_aio];
 
 % load results with multiple kernel learning
-mkapps = {'mkkm', 'aasc', 'gmkkm', 'lmkkm', 'gmkcf', 'lmkcf'};%
+mkapps = {'coreg_centroid',  'lmkkm', 'rmkkm', 'gmkcf', 'lmkcf'};%
 for mkapp = mkapps
     res_file = strcat(prefix, '_', mkapp{1}, '_multi_kernel.mat');
     if exist(res_file, 'file');
@@ -44,31 +44,30 @@ for mkapp = mkapps
         end
     end
 end
-r_m = [res_mkkm_aio; res_aasc_aio(7:9); res_gmkkm_aio; res_lmkkm_aio; res_gmkcf_aio; res_lmkcf_aio];%
+r_m = [res_coreg_centroid_aio; res_lmkkm_aio; res_rmkkm_aio; res_gmkcf_aio; res_lmkcf_aio];%
 
 % generate acc table
 %
 % c_measures = {'Accuracy', 'Normalized Mutual Information', 'Purity'};
 c_measures = {'acc', 'nmi', 'purity'};
-myled = {'KKM-b', 'KKM-a', 'KKM-w', 'SC-b', 'SC-a', 'SC-w', ...
-    'KCF-b','KCF-a','KCF-w', 'LCCF-b','LCCF-a','LCCF-w', 'LCF-b','LCF-a','LCF-w',...
-    'MACF-b','MACF-a','MACF-w', ...
-    'e-KKM', 'e-SC', 'e-KCF','e-LCCF','e-LCF','e-MACF',...
-    'MKKM', 'AASC', 'GMKKM', 'LMKKM', 'GMKCF', 'LMKCF'...%
+myled = {'KKM-b', 'KKM-a', 'SC-b', 'SC-a',  ...
+    'KCF-b','KCF-a', 'LCCF-b','LCCF-a',...
+    'MACF-b','MACF-a', ...
+    'Coreg',  'LMKKM', 'RMKKM', 'GMKCF', 'LMKCF'...%
 	};
 for idx_m = 1:length(c_measures)
     
     res_s_s = reshape(r_s(:,idx_m), size(r_s,1)/length(apps), length(apps));
     table_single = [];
     for idx_app = 1:length(apps)
-        table_single = [table_single, [max(res_s_s(:, idx_app)), mean(res_s_s(:, idx_app)), min(res_s_s(:, idx_app))]];
+        table_single = [table_single, [max(res_s_s(:, idx_app)), mean(res_s_s(:, idx_app))]];%, min(res_s_s(:, idx_app))
     end
-    table_ew = r_ew(:, idx_m)';
+%     table_ew = r_ew(:, idx_m)';
     table_m = r_m(:, idx_m)';
-    eval(sprintf('%s = [table_single, table_ew, table_m];', ['table_', c_measures{idx_m}]));
+    eval(sprintf('%s = [table_single, table_m];', ['table_', c_measures{idx_m}]));
     
     % figure;
-    x = (1:length(table_m) + length(table_ew) + length(table_single));
+    x = (1:length(table_m) + length(table_single));
     eval(sprintf('y = %s;', ['table_', c_measures{idx_m}]));
     b=bar(x, y);
     ch = get(b,'children');
