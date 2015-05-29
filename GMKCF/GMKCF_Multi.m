@@ -17,6 +17,7 @@ function [U_final, V_final, w_final, nIter_final, objhistory_final] = GMKCF_Mult
 %     Version: 1.0
 %     Last modified: 2015-04-15 21:49:42
 %**************************************************
+
 if ~exist('options', 'var')
     options = [];
 end
@@ -53,16 +54,16 @@ NormV = 1;
 nSmp = size(Ks,1);
 nKernel = size(Ks,3);
 
+w = ones(nKernel,1)/nKernel;
+K = calculate_kernel_theta(Ks, w.^2);
+
 if isempty(U)
     U = abs(rand(nSmp,c));
     V = abs(rand(nSmp,c));
+    [U,V] = NormalizeUV(K, U, V, NormV, Norm);
 else
     nRepeat = 1;
 end
-
-w = ones(nKernel,1)/nKernel;
-K = calculate_kernel_theta(Ks, w.^2);
-[U,V] = NormalizeUV(K, U, V, NormV, Norm);
 
 selectInit = 1;
 if nRepeat == 1
@@ -91,6 +92,7 @@ while tryNo < nRepeat
     
     while(maxErr > differror)
         % ===================== update U/V ========================
+
         [U, V] = KCF_Multi(K, c, struct('maxIter', [], 'nRepeat', 1), U, V);
         
         % ===================== update w ========================

@@ -23,5 +23,15 @@ function X = SimplexProj(Y)
 [N,D] = size(Y);
 X = sort(Y,2,'descend');
 Xtmp = (cumsum(X,2)-1)*diag(sparse(1./(1:D)));
-X = max(bsxfun(@minus,Y,Xtmp(sub2ind([N,D],(1:N)',sum(X>Xtmp,2)))),0);
+
+% numerical underflow
+tmp = sum(X>Xtmp,2);
+tmp = max(tmp, 1); 
+
+X = max(bsxfun(@minus,Y,Xtmp(sub2ind([N,D],(1:N)',tmp))),0);
+
+% numerical underflow
+idx = find(sum(X,2) ==0); 
+[~, idx2] = max(Y,[],2);
+X(sub2ind(size(X), idx, idx2(idx))) = 1;
 end

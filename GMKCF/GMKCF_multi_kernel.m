@@ -60,8 +60,8 @@ else
     for iRepeat = 1:nRepeat
         t_start = clock;
         disp(['GMKCF ',  num2str(iRepeat), ' of ' num2str(nRepeat), ' iterations begin ...']);
-
-        [~, V, w_final, ~, objhistory_final] = GMKCF_Multi(Ks, nClass, struct('maxIter', [], 'nRepeat', 1), [], []);
+        U = []; V = [];
+        [~, V, w_final, ~, objhistory_final] = GMKCF_Multi(Ks, nClass, struct('maxIter', [], 'nRepeat', 1), U, V);
         label_gmkcf = litekmeans(V, nClass, 'maxIter', 1000, 'Replicates', 20);
         gmkcf_res = [gmkcf_res; ClusteringMeasure(y, label_gmkcf)];%#ok<AGROW>
         obj_final = [obj_final; objhistory_final(end)];%#ok<AGROW>

@@ -1,0 +1,1306 @@
+
+%% bare_jrnl_compsoc.tex
+%% V1.4a
+%% 2014/09/17
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8a or later) with an IEEE
+%% Computer Society journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_conf_compsoc.tex,
+%%                    bare_jrnl_compsoc.tex, bare_jrnl_transmag.tex
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices and paper sizes can       ***
+% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[10pt,journal,compsoc]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society  papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later. Note also the use of a CLASSOPTION conditional provided by
+% IEEEtran.cls V1.7 and later.
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/tex-archive/info/epslatex/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Do not use the stfloats baselinefloat ability as IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/dblfloatfix/
+
+
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
+% Axel Sommerfeldt. This package may be useful when used in conjunction with 
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/endfloat/
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/url/
+% Basically, \url{my_url_here}.
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+\usepackage{algorithm,algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\renewcommand{\algorithmicreturn}{\textbf{Initialization:}}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\newtheorem{theorem}[subsubsection]{Theorem}
+\newtheorem{lemma}[subsubsection]{Lemma}
+\newtheorem{definition}[subsubsection]{Definition}
+\newtheorem{proposition}[section]{Proposition}
+
+\newcommand{\st}{\mathrm{s.t.}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\tr}{\mathrm{tr}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Multiple Kernel Concept Factorization for Data Clustering}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+%
+%\IEEEcompsocitemizethanks is a special \thanks that produces the bulleted
+% lists the Computer Society journals use for "first footnote" author
+% affiliations. Use \IEEEcompsocthanksitem which works much like \item
+% for each affiliation group. When not in compsoc mode,
+% \IEEEcompsocitemizethanks becomes like \thanks and
+% \IEEEcompsocthanksitem becomes a line break with idention. This
+% facilitates dual compilation, although admittedly the differences in the
+% desired content of \author between the different types of papers makes a
+% one-size-fits-all approach a daunting prospect. For instance, compsoc 
+% journal papers have the author affiliations above the "Manuscript
+% received ..."  text while in non-compsoc journals this is reversed. Sigh.
+
+\author{Michael~Shell,~\IEEEmembership{Member,~IEEE,}
+        John~Doe,~\IEEEmembership{Fellow,~OSA,}
+        and~Jane~Doe,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops a space
+\IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Shell is with the Department
+of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta,
+GA, 30332.\protect\\
+% note need leading \protect in front of \\ to get a newline within \thanks as
+% \\ is fragile and will error, could use \hfil\break instead.
+E-mail: see http://www.michaelshell.org/contact.html
+\IEEEcompsocthanksitem J. Doe and J. Doe are with Anonymous University.}% <-this % stops an unwanted space
+\thanks{Manuscript received April 19, 2005; revised September 17, 2014.}}
+
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+\markboth{Journal of \LaTeX\ Class Files,~Vol.~13, No.~9, September~2014}%
+{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+% The publisher's ID mark at the bottom of the page is less important with
+% Computer Society journal papers as those publications place the marks
+% outside of the main text columns and, therefore, unlike regular IEEE
+% journals, the available text space is not reduced by their presence.
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2014 IEEE}
+% or like this to get the Computer Society new two part style.
+%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2014 IEEE}%
+%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark (Computer Society jorunal
+% papers don't need this extra clearance.)
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+% for Computer Society papers, we must declare the abstract and index terms
+% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
+% command as these need to go into the title area created by \maketitle.
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\IEEEtitleabstractindextext{%
+\begin{abstract}
+The abstract goes here.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Computer Society, IEEEtran, journal, \LaTeX, paper, template.
+\end{IEEEkeywords}}
+
+
+% make the title area
+\maketitle
+
+
+% To allow for easy dual compilation without having to reenter the
+% abstract/keywords data, the \IEEEtitleabstractindextext text will
+% not be used in maketitle, but will appear (i.e., to be "transported")
+% here as \IEEEdisplaynontitleabstractindextext when the compsoc 
+% or transmag modes are not selected <OR> if conference mode is selected 
+% - because all conference papers position the abstract like regular
+% papers do.
+\IEEEdisplaynontitleabstractindextext
+% \IEEEdisplaynontitleabstractindextext has no effect when using
+% compsoc or transmag under a non-conference mode.
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
+% Computer Society journal (but not conference!) papers do something unusual
+% with the very first section heading (almost always called "Introduction").
+% They place it ABOVE the main text! IEEEtran.cls does not automatically do
+% this for you, but you can achieve this effect with the provided
+% \IEEEraisesectionheading{} command. Note the need to keep any \label that
+% is to refer to the section immediately after \section in the above as
+% \IEEEraisesectionheading puts \section within a raised box.
+
+
+
+
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps (small caps for compsoc).
+% 
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+% 
+% form to use if you need the single drop letter followed by
+% normal text (unknown if ever used by IEEE):
+% \IEEEPARstart{A}{}demo file is ....
+% 
+% Some journals put the first two words in caps:
+% \IEEEPARstart{T}{his demo} file is ....
+% 
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+\IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
+for IEEE Computer Society journal papers produced under \LaTeX\ using
+IEEEtran.cls version 1.8a and later.
+% You must have at least 2 lines in the paragraph with the drop letter
+% (should never be an issue)
+I wish you the best of success.
+
+\hfill mds
+ 
+\hfill September 17, 2014
+
+\subsection{Subsection Heading Here}
+Subsection text here.
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+\subsubsection{Subsubsection Heading Here}
+Subsubsection text here.
+
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+% However, the Computer Society has been known to put floats at the bottom.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command,
+% and the \label for the overall figure must come after \caption.
+% \hfil is used as a separator to get equal spacing.
+% Watch out that the combined width of all the subfigures on a 
+% line do not exceed the text width or a line break will occur.
+%
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+%\label{fig_second_case}}
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat[]), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
+% labels, the optional argument to \subfloat must be present. If a
+% subcaption is not desired, just leave its contents blank,
+% e.g., \subfloat[].
+
+
+% An example of a floating table. Note that, for IEEE style tables, the
+% \caption command should come BEFORE the table and, given that table
+% captions serve much like titles, are usually capitalized except for words
+% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
+% and up, which are usually not capitalized unless they are the first or
+% last word of the caption. Table text will default to \footnotesize as
+% IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that the IEEE does not put floats in the very first column
+% - or typically anywhere on the first page for that matter. Also,
+% in-text middle ("here") positioning is typically not used, but it
+% is allowed and encouraged for Computer Society conferences (but
+% not Computer Society journals). Most IEEE journals/conferences use
+% top floats exclusively. 
+% Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the
+% \fnbelowfloat command of the stfloats package.
+
+\section{Related Work}
+\subsection{NMF and CF}
+Non-negative Matrix Factorization (NMF) [xxx] is a matrix factorization algorithm that focuses on the analysis of data matrices whose elements are nonnegative. Given a data matrix $\mathbf{X} = [\mathbf{x}_1, \cdots , \mathbf{x}_n ] \in \mathcal{R}^{d \times n}$, each column of $\mathbf{X}$ is a sample vector. NMF aims to find two non-negative matrices $\mathbf{U} \in \mathcal{R}^{d \times n}$ and $\mathbf{U} \in \mathcal{R}^{d \times n}$ whose product can well approximate the original matrix $\mathbf{X}$. The optimal value of $\mathbf{U}$ and $\mathbf{V}$ can be found by solving the following optimization problem:
+\begin{align}
+\min_{\mathbf{U}, \mathbf{V}} \quad ||\mathbf{X} - \mathbf{U} \mathbf{V}^T ||^2, \quad \st \quad \mathbf{U} \geq 0, \mathbf{V} \geq 0.
+\end{align}
+It can be seen that each data vector $\mathbf{x}_i$ is approximated by a linear combination of the columns of $\mathbf{U}$, weighted by the components of $\mathbf{V}$, i.e. $\mathbf{x}_i = \sum_{k} \mathbf{u}_k v_{ik}$. Thus, $\mathbf{U}$ can be regarded as a set of basis and $\mathbf{V}$ can be regarded as the new representation of each data point in the new basis $\mathbf{U}$.
+
+NMF can only be performed in the original feature space of the data points. In the case that the data are highly nonlinear distributed, it is desirable that we can kernelize NMF and apply the powerful idea of the kernel method. To achieve this goal, Xu and Gong [xxx] proposed an extension of NMF which is called Concept Factorization. In CF, each basis $\mathbf{u}_k$ is required to be a nonnegative linear combination of the sample vectors $\mathbf{x}$ 
+\begin{align}
+\min_{\mathbf{U}, \mathbf{V}} \quad ||\mathbf{X} - \mathbf{X} \mathbf{U} \mathbf{V}^T ||^2, \quad \st \quad \mathbf{U} \geq 0, \mathbf{V} \geq 0.
+\end{align}
+It can be seen that the above concept factorization model can be easily kernelized by solving the following problem
+\begin{align}
+\min_{\mathbf{U}, \mathbf{V}} \quad & \tr(\mathbf{K}) - 2 \tr(\mathbf{V}^T \mathbf{K} \mathbf{U}) + \tr(\mathbf{U}^T \mathbf{K} \mathbf{U} \mathbf{V}^T \mathbf{V}) \\
+\st \quad & \mathbf{U} \geq 0, \mathbf{V} \geq 0. \nonumber
+\end{align}
+It has been shown that the optimal value of $\mathbf{U}$ and $\mathbf{V}$ in the kernel concept factorization model can be obtained by the following multiplicative update rules:
+\begin{align}
+\mathbf{U}_{ij} & = \mathbf{U}_{ij} \frac{(\mathbf{K} \mathbf{V})_{ij}}{(\mathbf{K} \mathbf{U} \mathbf{V}^{T} \mathbf{V})_{ij}} \\
+\mathbf{V}_{ij} & = \mathbf{V}_{ij} \frac{(\mathbf{K} \mathbf{U})_{ij}}{(\mathbf{V} \mathbf{U}^T \mathbf{K} \mathbf{U})_{ij}}
+\end{align}
+For the kernel matrix with negative entries, the multiplicative update rules become
+\begin{align}
+\mathbf{U}_{ij} & = \mathbf{U}_{ij} \frac{(\mathbf{K} \mathbf{V})_{ij} + \sqrt{(\mathbf{K} \mathbf{V})_{ij}^2 + 4 \mathbf{P}_{ij}^{+} \mathbf{P}_{ij}^{-} }}{2 \mathbf{P}_{ij}^{+}} \\
+\mathbf{V}_{ij} & = \mathbf{V}_{ij} \frac{(\mathbf{K} \mathbf{U})_{ij} + \sqrt{(\mathbf{K} \mathbf{U})_{ij}^2 + 4 \mathbf{Q}_{ij}^{+} \mathbf{Q}_{ij}^{-} }}{2 \mathbf{Q}_{ij}^{+}}
+\end{align}
+where
+\begin{align}
+\mathbf{K}^{+} &= \frac{|\mathbf{K}| + \mathbf{K}}{2}\\
+\mathbf{K}^{-} &= \frac{|\mathbf{K}| - \mathbf{K}}{2}\\
+\mathbf{P}^{+} &= \mathbf{K}^{+} \mathbf{U} \mathbf{V}^{T} \mathbf{V}\\
+\mathbf{P}^{-} &= \mathbf{K}^{-} \mathbf{U} \mathbf{V}^{T} \mathbf{V}\\
+\mathbf{Q}^{+} &= \mathbf{V} \mathbf{U}^T \mathbf{K}^{+} \mathbf{U} \\
+\mathbf{Q}^{-} &= \mathbf{V} \mathbf{U}^T \mathbf{K}^{-} \mathbf{U}
+\end{align}
+
+
+\subsection{Multiple Kernel Clustering}
+
+\section{Globalized Multiple Kernel Concept Factorization}
+\subsection{Motivation and Formulation}
+
+The proposed method above only works for single kernel data clustering. However, one of the central problems with kernel methods in general is that it is often unclear which kernel is the most suitable for a particular task. [more diffcult for unsupervised MKL].
+
+In this section, we extend kernel concept factorization to automatically learn an appropriate kernel from the convex linear combination of several pre-computed kernel matrices within the multiple kernel learning framework \cite{gonen2011multiple}.
+
+Suppose there are altogether $m$ different kernel functions $\{\mathcal{K}^{i}\}_{i=1}^{m}$ available for the clustering task in hand. Accordingly, there are $m$ different associated feature spaces denoted as $\{\mathcal{H}\}_i^m$. To combine these kernels and also ensure that the resulted kernel still satisfies Mercer condition, we consider a nonnegative combination of these feature maps, $\phi'$ , that is,
+\begin{align}
+\phi'(\mathbf{x}) = \sum_{i=1}^{m} w_i \phi_i(\mathbf{x}) \quad \text{ with } w_i \geq 0.
+\end{align}
+Unfortunately, as these implicit mappings do not necessarily have the same dimensionality, such a linear combination may be unrealistic.
+Hence, we construct an augmented Hilbert space $\mathcal{\tilde{H}} = \oplus_{i=1}^{m} \mathcal{H}^i$ by concatenating all feature spaces $\phi_{\mathbf{w}}(\mathbf{x}) = [ w_1 \phi_{1}(\mathbf{x}); w_2 \phi_{2}(\mathbf{x}); \ldots; w_m \phi_{m}(\mathbf{x}) ]^T$ with different weight $w_i (w_i \geq 0)$ ,  or
+equivalently the importance factor for kernel function $\mathcal{K}^i$. It can be verified that clustering in feature space $\mathcal{\tilde{H}}$ is equivalent to employing a combined kernel function \cite{zeng2011feature}
+\begin{align}\label{update_Kw}
+\tilde{\mathcal{K}}(\mathbf{x}, \mathbf{z}) = \sum_{i=1}^{m} w_i \mathcal{K}^{i}(\mathbf{x}, \mathbf{z}).
+\end{align}
+It is known that the convex combination, with $\mathbf{w} (w_i \geq 0)$, of the positive semi-definite kernel matrices $\{ \mathbf{K}^{i}\}_{i=1}^{m}$ is still a positive semi-definite kernel matrix. By replacing the single kernel in Eq. \eqref{rkkm} with the combined kernel, we propose a new Globalized Multiple Kernel Concept Factorization (GMKCF) method by solving:
+\begin{align}\label{opt_glmkcf}
+\min_{\mathbf{U}, \mathbf{V}, \mathbf{w}} \quad & \tr(\mathbf{K}_{\mathbf{w}}) - 2 \tr(\mathbf{V}^T \mathbf{K}_{\mathbf{w}} \mathbf{U}) + \tr(\mathbf{U}^T \mathbf{K}_{\mathbf{w}} \mathbf{U} \mathbf{V}^T \mathbf{V}) \nonumber \\
+& +  \lambda ||\mathbf{V}^T \mathbf{V} - \mathbf{I}||^2 \\
+\st \quad & \mathbf{U} \geq 0, \mathbf{U} \mathbf{1}_{k} = \mathbf{1}_{n}, \mathbf{V} \geq 0, \mathbf{w} \geq 0, \sum_{i=1}^{m} w_{i}^{\gamma} = 1. \nonumber
+\end{align}
+where $\lambda> 0$ is a parameter to control the orthogonality condition. Usually, $\lambda$ should be large enough to insure the orthogonality satisfied and we fix it as $10^6$ in our experiments.
+
+The main purpose of imposing additional regularization on $\mathbf{V}$ is to guarantee the uniqueness of our solution. It has been pointed out that \cite{cf} the optimal solution obtained by the update rules in Eq. \eqref{} for Eq. \eqref{kcf} is not unique:  if $\{\mathbf{U}^* ,\mathbf{V}^* \}$ is the optimal solution for Eq. (xxx), then $\{\mathbf{U}^* \mathbf{D} ,\mathbf{V}^*\mathbf{D}^{-1} \}$ will also be a solution with the same objective function value for any positive diagnoal matrix $\mathbf{D}$. To eliminate this uncertainty, \cite{cf} proposed to use normalization on columns of $\mathbf{U}$ and $\mathbf{V}$ in each iteration during the optimization, i.e., $\mathbf{U} = \mathbf{U} [\diag(\mathbf{U}^T \mathbf{K}\mathbf{U})]^{-1/2}$ and $\mathbf{V} = \mathbf{V} [\diag(\mathbf{U}^T \mathbf{K}\mathbf{U})]^{1/2}$. However, this is not a principled way to solve the problem. It is necessary to explicitly include the orthonormal regularization in our framework to avoid such an adhoc step.
+\subsection{Algorithm}
+The optimization problem in Eq. (xx) is not convex in all variables together, but convex in them separately. In the following, we introduce an iterative algorithm based on block coordinate descent to solve it. We separately update the value of $\mathbf{w}$, $\mathbf{U}$ and $\mathbf{V}$, while holding the other variables as constant. Thus, a local minima can be expected by solving a sequence of convex optimization problems.
+
+\subsubsection{Optimizing w.r.t. $\mathbf{U}$ when $\mathbf{V}$ and $\mathbf{w}$ are fixed}
+The minimization of the objective function in Eq. \eqref{opt_glmkcf} with respect to $\mathbf{U}$ can be decomposed into solving the following problem:
+\begin{align}
+\min_{\mathbf{U}} \quad & \tr(\mathbf{U}^T \mathbf{K}_{\mathbf{w}} \mathbf{U} \mathbf{V}^T \mathbf{V}) - 2 \tr(\mathbf{U}^T \mathbf{K}_{\mathbf{w}} \mathbf{V}) \\
+\st \quad & \mathbf{U} \geq 0. \nonumber
+\end{align}
+It can be seen that the above problem is the same as kernel concept factorization with the estimated kernel $\mathbf{K}_{\mathbf{w}}$, thus, the optimal value can be obtained by using the multiplicative rule:
+\begin{align} \label{update_g_u_nn}
+\mathbf{U}_{ij} & = \mathbf{U}_{ij} \frac{(\mathbf{K} \mathbf{V})_{ij}}{(\mathbf{K} \mathbf{U} \mathbf{V}^{T} \mathbf{V})_{ij}} 
+\end{align}
+For the kernel $\mathbf{K}_{\mathbf{w}}$ with negative entries, denote $\mathbf{K}_{\mathbf{w}}^{+} = \frac{|\mathbf{K}_{\mathbf{w}}| + \mathbf{K}_{\mathbf{w}}}{2}$, $\mathbf{K}_{\mathbf{w}}^{-} = \frac{|\mathbf{K}_{\mathbf{w}}| - \mathbf{K}_{\mathbf{w}}}{2}$, we have
+\begin{align}\label{update_g_u}
+\mathbf{U}_{ij} & = \mathbf{U}_{ij} \frac{(\mathbf{K}_{\mathbf{w}} \mathbf{V})_{ij}^2 + \sqrt{(\mathbf{K}_{\mathbf{w}} \mathbf{V})_{ij} + 4 \mathbf{P}_{ij}^{+} \mathbf{P}_{ij}^{-} }}{2 \mathbf{P}_{ij}^{+}} 
+\end{align}
+where $\mathbf{P}_{\mathbf{w}}^{+} = \mathbf{K}_{\mathbf{w}}^{+} \mathbf{U} \mathbf{V}^{T} \mathbf{V}$, $\mathbf{P}_{\mathbf{w}}^{-} = \mathbf{K}_{\mathbf{w}}^{-} \mathbf{U} \mathbf{V}^{T} \mathbf{V}$.
+
+
+
+
+\subsubsection{Optimizing w.r.t. $\mathbf{V}$ when $\mathbf{U}$ and $\mathbf{w}$ are fixed}
+The minimization of the objective function in Eq. \eqref{opt_glmkcf} with respect to $\mathbf{U}$ can be decomposed into solving the following problem:
+\begin{align}\label{opt_V}
+\min_{\mathbf{V}} \quad & \tr( \mathbf{V}^T \mathbf{U}^T \mathbf{K}_{\mathbf{w}} \mathbf{U} \mathbf{V}) - 2 \tr(\mathbf{V}^T \mathbf{K}_{\mathbf{w}} \mathbf{U}) + \lambda ||\mathbf{V}^T \mathbf{V} - \mathbf{I}||^2 \nonumber \\
+\st \quad & \mathbf{V} \geq 0. 
+\end{align}
+Defining $\mathbf{A}^{+} = \mathbf{U}^T \mathbf{K}_{\mathbf{w}}^{+} \mathbf{U}$, $\mathbf{A}^{-} = \mathbf{U}^T \mathbf{K}_{\mathbf{w}}^{-} \mathbf{U}$, $\mathbf{B}^{+} = \mathbf{K}_{\mathbf{w}}^{+} \mathbf{U}$ and $\mathbf{B}^{-} = \mathbf{K}_{\mathbf{w}}^{-} \mathbf{U}$, we have
+\begin{align}
+\min_{\mathbf{V}} \quad & \tr(\mathbf{V} ( \mathbf{A}^{+} - \mathbf{A}^{-} ) \mathbf{V}^T ) - 2 \tr(\mathbf{V}^T (\mathbf{B}^{+} - \mathbf{B}^{-}) ) \nonumber \\
+& + \lambda ||\mathbf{V}^T \mathbf{V} - \mathbf{I}||^2 \\
+\st \quad & \mathbf{V} \geq 0. \nonumber
+\end{align}
+The objective function in Eq. \eqref{opt_V} is a fourth-order non-convex function with respect to the entries of $\mathbf{V}$, and has multiple local minima. For this type of problem, it is difficult to find a global minimum; thus a good convergence property we can expect is that every limit point is a stationary point \cite{xxx}. We can directly apply standard gradient search algorithms, which lead to stationary point solutions; however, they suffer from either slow convergencerate or expensive computation cost. Thus, it is not a trivial problem to minimize Eq. \eqref{opt_V} efficiently.
+
+In the next, we use the auxiliary function approach \cite{nmf_algo} to derive an efficient updating rule for Eq. \eqref{opt_V} and prove its convergence. The basic idea is to construct an auxiliary function which is a convex upper bound for the original objective function based on the solution obtained from the previous iteration. Then, a new solution to the current iteration is obtained by minimizing this upper bound. Here we first introduce the definition of auxiliary function.
+\begin{definition}\cite{nmf_algo}
+$\mathit{g}$ is an auxiliary function for $\mathit{f}$ if the conditions
+$$\mathit{g}(x, x^t) \geq \mathit{f}(x) \textrm{ and } \mathit{g}(x, x) \geq \mathit{f}(x)$$
+are satisfied.
+\end{definition}
+\begin{lemma}\label{lemma_auxilary}\cite{nmf_algo}
+If $\mathit{g}$ is an auxiliary function for $\mathit{f}$, then $\mathit{f}$ is non-increasing under the update $$x^{t+1} = \arg \min_{x} g (x,x^t).$$
+Proof. $\mathit{f}(x^{t+1}) \leq \mathit{g}(x^{t+1}, x^t) \leq \mathit{g}(x^{t}, x^t) = \mathit{f}(x^{t}).$
+\end{lemma}
+In the following Theorem \ref{theorem_auxilary}, we propose an auxiliary function for the objective function in Eq. \eqref{opt_V} and derive the multiplicative update rule to obtain its global minimum.
+\begin{theorem}\label{theorem_auxilary}
+Let 
+\begin{align}
+\mathit{f}(\mathbf{V}) =& \tr(\mathbf{V} \mathbf{A}^{+} \mathbf{V}^T) - \tr(\mathbf{V} \mathbf{A}^{-} \mathbf{V}^T )   \\
+-& 2 \tr(\mathbf{V}^T \mathbf{B}^{+}) + 2 \tr(\mathbf{V}^T  \mathbf{B}^{-})   + \lambda ||\mathbf{V}^T \mathbf{V} - \mathbf{I}||^2 \nonumber
+\end{align}
+Then the following function
+\begin{align}\label{function_gvv}
+&\mathit{g}(\mathbf{V}, \mathbf{V}^t) \\
+&=\frac{1}{2}\sum_{ij}(\mathbf{V}^t \mathbf{A}^{+})_{ij} \mathbf{V}_{ij}^{t} (\frac{\mathbf{V}_{ij}^{4}}{(\mathbf{V}_{ij}^{t})^4} + 1) \nonumber \\
+&- \sum_{ijk} \mathbf{A}_{jk}^{-} \mathbf{V}_{ij}^{t} \mathbf{V}_{ik}^{t}(1 + \log\frac{\mathbf{V}_{ij} \mathbf{V}_{ik}}{\mathbf{V}_{ij}^t \mathbf{V}_{ik}^t}) \nonumber \\
+&- \sum_{ij} \mathbf{B}_{ij}^{+} \mathbf{V}_{ij}^{t}(1 + \log\frac{\mathbf{V}_{ij}}{\mathbf{V}_{ij}^t}) \nonumber \\
+&+ \frac{1}{4} \sum_{ij} \mathbf{B}_{ij}^{-}\mathbf{V}_{ij}^t \left(\frac{\mathbf{V}_{ij}^4 }{(\mathbf{V}_{ij}^t)^4} + 1 \right)  + \sum_{ij} \mathbf{B}_{ij}^{-} \frac{ (\mathbf{V}_{ij}^{t})^{2}}{2\mathbf{V}_{ij}^t} \nonumber \\
+& + k\lambda -2\lambda\sum_{ijk} \mathbf{I}_{jk}\mathbf{V}_{ij}^t \mathbf{V}_{ik}^t  ( 1 + \log \frac{\mathbf{V}_{ij} \mathbf{V}_{ik}}{\mathbf{V}_{ij}^t \mathbf{V}_{ik}^t} )  \nonumber \\
+&+ \frac{\lambda}{2} \sum_{ijk}   [(\mathbf{V}^{t})^T(\mathbf{V}^{t})]_{jk} \mathbf{V}_{ij}^{t} \mathbf{V}_{ik}^{t} \left( \frac{\mathbf{V}_{ij}^{4}}{(\mathbf{V}_{ij}^{t})^{4}} + \frac{\mathbf{V}_{ik}^{4}}{(\mathbf{V}_{ik}^{t})^{4}} \right) \nonumber
+\end{align}
+is an auxiliary function for $\mathit{f}(\mathbf{V})$. Furthermore, it is a convex function with respect to $\mathbf{V}$ and its global minimum is
+\begin{align}\label{update_V}
+\mathbf{V}_{ij} = \mathbf{V}_{ij}^{t} \left( \frac{[ \mathbf{V}^{t} \mathbf{A}^{-} +  \mathbf{B}^{+} + 2 \lambda  \mathbf{V}^{t}  ]_{ij} }{[ \mathbf{V}^{t} \mathbf{A}^{+} + \mathbf{B}^{-} + 2 \lambda \mathbf{V}^{t}  (\mathbf{V}^{t})^T  \mathbf{V}^{t} ]_{ij} } \right)^{\frac{1}{4}}
+\end{align}
+
+\begin{proof}
+See Appendix \ref{appendix_A}.
+\end{proof}
+\end{theorem}
+Now, we prove the convergence of the update rule in Eq. \eqref{update_V} can be guaranteed by the following Theorem \ref{theorem_U_convergence}.
+\begin{theorem}\label{theorem_U_convergence}
+Updating $\mathbf{V}$ using Eq. \eqref{update_V} will monotonically decrease the value of the objective in Eq. \eqref{opt_V}, hence it converges.
+\begin{proof}
+By Lemma \ref{lemma_auxilary} and Theorem \ref{theorem_auxilary}, we can get that $\mathit{f}(\mathbf{V}^0) \geq \mathit{g}(\mathbf{V}, \mathbf{V}^0) \geq \mathit{f}(\mathbf{V}^1) \geq \cdots$, So $\mathit{f}(\mathbf{V})$ is monotonically decreasing. Since $\mathit{f}(\mathbf{V})$ is obviously belower bounded, we prove this theorem.
+\end{proof}
+\end{theorem}
+
+
+
+
+\subsubsection{Optimizing w.r.t. $\mathbf{w}$ when $\mathbf{U}$ and $\mathbf{V}$ are fixed}
+By defining $\mathbf{e} \in \mathcal{R}^{m \times 1}$ with 
+\begin{align}
+e_i = \tr(\mathbf{K}^{i}) - 2 \tr(\mathbf{V}^T \mathbf{K}^{i} \mathbf{U}) + \tr(\mathbf{U}^T \mathbf{K}^{i} \mathbf{U} \mathbf{V}^T \mathbf{V}),
+\end{align}
+the optimization of Eq. (xxx) with respect to $\mathbf{w}$ can be simplified as solving the following problem:
+\begin{align}\label{w_proxy}
+\min_{\mathbf{w}} \quad \sum_{i=1}^{m} w_i^2 e_i, \quad \st \quad \sum_{i=1}^{m} w_i = 1, w_i \geq 0.
+\end{align}
+The Lagrange function of Eq. \eqref{w_proxy} is $\mathcal{J}(\mathbf{w}) = \sum_{i=1}^{m} w_i^2 e_i + \lambda (1 - \sum_{i=1}^{m}w_i)$. By using the KKT condition $\frac{\partial \mathcal{J}(\mathbf{w})}{\partial w_i} = 0$ and the constraint $\sum_{i=1}^{m} w_i = 1$, the optimal solution of $\mathbf{w}$ can be obtained by
+\begin{align}\label{update_w}
+  w_i = \frac{\frac{1}{e_i}}{\sum_{j=1}^{m} \frac{1}{e_j}}.
+\end{align}
+In summary, we present the iterative updating algorithm of optimizing Eq. \eqref{opt_glmkcf} in Algorithm \ref{alg_gmkcf}.
+\begin{algorithm}
+    \caption{The algorithm of GMKCF}
+  \label{alg_gmkcf}
+  \begin{algorithmic}
+  \REQUIRE{A set of kernels $\{K^{i}\}_{i=1}^{m}$, the desired number of cluster $c$.}
+    \STATE{Initialize the indicator matrix $Z$ randomly, such that $Z$ satisfies $z_{ij}=\{0,1\}$ and $\sum_j z_{ij}=1$;}
+    \STATE{Initialize the kernel weight $w_i = 1/m$ for each kernel;}
+    \STATE{Initialize the diagonal matrix $D=I_{n}$, where $I_{n}$ is the identity matrix;}
+  \REPEAT
+  \STATE{Update the association matrix $\mathbf{U}$ by using \eqref{update_g_u_nn} or \eqref{update_g_u};}
+  \STATE{Update the projection matrix $\mathbf{V}$ by Eq. \eqref{update_V};}
+  \STATE{Update the kernel weight $\mathbf{w}$ by Eq. \eqref{update_w};}
+  \STATE{Update the estimated kernel $\mathbf{K}_{\mathbf{w}}$ by Eq. \eqref{update_Kw};}
+  \UNTIL{Converges}
+    \ENSURE{association matrix $\mathbf{U}$, projection matrix $\mathbf{V}$, and the kernel weights $\mathbf{w}$.}
+  \end{algorithmic}
+\end{algorithm}
+
+
+\subsubsection{Convergence and Complexity Analysis}
+Note that the objective function in Eq. \eqref{opt_glmkcf} is nonincreasing under the derived updating rules. Since the objective function is bounded below, the convergence of the algorithm is guaranteed.
+
+In the following, we give the complexity analysis of the optimization algorithm. Initially, we need to compute $m$ kernel matrices $\{ \mathbf{K}^{i}\}_{i=1}^{m}$, whose cost is generally $\mathbf{O}(m n^2 d)$, where $n$ is the number of samples and $d$ is the number of features. The cost of each iteration is given by
+\begin{itemize}
+\item Updating of $\mathbf{U}$: the computational cost of $\mathbf{P}^{+}$ and $\mathbf{P}^{+}$ is $\mathbf{O}(n^2 k + k^2 n)$, and the cost of evaluating Eq. \eqref{update_g_u} is $\mathbf{O}(n^2 k)$.
+\item Updating of $\mathbf{V}$: the computational cost of $\mathbf{A}^{+}$ and $\mathbf{A}^{-}$ is $\mathbf{O}(n^2 k + k^2 n)$, the computational cost of $\mathbf{B}^{+}$ and $\mathbf{B}^{-}$ is $\mathbf{O}(n^2 k)$, the cost of evaluating Eq. \eqref{update_V} is $\mathbf{O}(n k^2)$.
+\item Updating of $\mathbf{w}$: the computational cost of $\mathbf{e}$ is $\mathbf{O}(m(n^2k + k^2n ))$.
+\item Updating of $\mathbf{K}_{\mathbf{w}}$: the computational cost of $\mathbf{K}_{\mathbf{w}}$ is $n^2 m $.
+\end{itemize}
+Suppose the multiplicative updates stops after $t$ iterations, the overall cost for GMKCF is $\mathbf{O}(mn^2d + n^2t(k +  m))$have the same computational complexity by using the big $\mathbf{O}$ notation when dealing with the high-dimensional data.
+
+\section{Localized Multiple Kernel Concept Factorization}
+
+
+\subsection{Motivation}
+
+\subsection{Formulation}
+In our localized combination approach, the mapping function is represented as $\phi_{\mathbf{W}}(\mathbf{x}_i) = [ W_{i1} \phi_{1}(\mathbf{x}_i); W_{i2} \phi_{2}(\mathbf{x}_i); \ldots; W_{im} \phi_{m}(\mathbf{x}_i) ]^T$. Thus we get locally combined kernel function:
+\begin{align}\label{kernel_func}
+K_W(\mathbf{x}_i, \mathbf{x}_j) &= \langle \phi_{\mathbf{W}}(\mathbf{x}_i), \phi_{\mathbf{W}}(\mathbf{x}_j)  \rangle \\
+&= \sum_{t=1}^{m} \langle W_{it} \phi_{t}(\mathbf{x}_i), W_{jt} \phi_{t}(\mathbf{x}_j) \rangle \nonumber\\
+&= \sum_{t=1}^{m} W_{it} W_{jt} K_t(\mathbf{x}_i, \mathbf{x}_j)  \nonumber
+%&= \sum_{t=1}^{m} (\mathbf{w}_{t} \mathbf{w}_{t}^T) \otimes \mathbf{K}_t \nonumber
+\end{align}
+%where $\mathbf{w}_t$ is the $t$-th column of $\mathbf{W}$ and $\otimes$ is the element-wise product operator.
+
+\begin{theorem}
+$K_W(\cdot,\cdot)$ defined in Eq. \eqref{kernel_func} is a positive semi-definite kernel function.
+\end{theorem}
+\begin{proof}
+To prove that $\mathbf{K_W}$ is a positive semi-definite kernel function, we introduce the following lemma:
+\begin{lemma}
+Let $K:\mathcal{X}\times\mathcal{X}\to \mathbf{R}$ be a symmetric function, the necessary and sufficient condition of that $K(x,z)$ is a positive semi-definite kernel function is that the Gram Matrix of $K(x,z)$ for any $x_i \in \mathcal{X}$: $\mathcal{K}=[K(x_i,x_j)]_{m\times m}$ is a positive semi-definite matrix.
+\end{lemma}
+\begin{proof}
+\end{proof}
+According to Lemma 4.2.2, we just need to prove that for any $x_1,...,x_n$, the Gram Matrix of $K_W$ is positive semi-definite. Let $\mathbf{K_W}$ be the Gram Matrix of $K_W(\cdot,\cdot)$ and $\mathbf{K_t}$ be the Gram Matrix of $K_t(\cdot,\cdot)$, we just need to prove that $(\mathbf{w}_{t} \mathbf{w}_{t}^T) \otimes \mathbf{K}_t$ is positive semi-definite, where $\mathbf{w}_t$ is the $t$-th column of $\mathbf{W}$ and $\otimes$ is the element-wise product operator.
+
+Since $K_t(\cdot,\cdot)$ is positive semi-definite kernel function, according to Lemma 4.2.2, $\mathbf{K_t}$ is positive semi-definite. Thus all the leading principal minors of $\mathbf{K_t}$ are all positive. Now  consider the $j$-th leading principal minor of $\mathbf{K_W}$:
+\begin{align}
+&\left|
+\begin{array}{ccc}
+Kw(x_1,x_1) & \cdots & Kw(x_1,x_j) \\
+\vdots & \vdots & \vdots \\
+Kw(x_j,x_1) & \cdots & Kw(x_j,x_j)
+\end{array}
+\right|\\
+=&\left|
+\left(
+\begin{array}{ccc}
+W_{1t}W_{1t} & \cdots & W_{1t}W_{jt} \\
+\vdots & \vdots & \vdots \\
+W_{jt}W_{1t} & \cdots & W_{jt}W_{jt}
+\end{array}
+\right)
+\otimes\left(
+\begin{array}{ccc}
+K_t(x_1,x_1) & \cdots & K_t(x_1,x_j) \\
+\vdots & \vdots & \vdots \\
+K_t(x_j,x_1) & \cdots & K_t(x_j,x_j)
+\end{array}
+\right)
+\right| \nonumber\\
+=&W_{1t}^2W_{2t}^2\cdots W_{jt}^2
+\left|
+\begin{array}{ccc}
+K_t(x_1,x_1) & \cdots & K_t(x_1,x_j) \\
+\vdots & \vdots & \vdots \\
+K_t(x_j,x_1) & \cdots & K_t(x_j,x_j)
+\end{array}
+\right| \nonumber
+\end{align}
+where $|\cdot|$ is determinant of a matrix.
+
+Since $\mathbf{K_t}$ is positive semi-definite, we have
+\begin{align}
+\left|
+\begin{array}{ccc}
+K_t(x_1,x_1) & \cdots & K_t(x_1,x_j) \\
+\vdots & \vdots & \vdots \\
+K_t(x_j,x_1) & \cdots & K_t(x_j,x_j)
+\end{array}
+\right| \geq 0
+\end{align}
+Thus, we obtain:
+\begin{align}\label{minor}
+\left|
+\begin{array}{ccc}
+K_W(x_1,x_1) & \cdots & K_W(x_1,x_j) \\
+\vdots & \vdots & \vdots \\
+K_W(x_j,x_1) & \cdots & K_W(x_j,x_j)
+\end{array}
+\right| \geq 0
+\end{align}
+Eq. \eqref{minor} holds for any $1 \leq j\leq n$, thus $K_W$ is positive semi-definite and $K_W(\cdot,\cdot)$ is a positive semi-definite kernel function.
+\end{proof}
+
+Taking Eq.\eqref{kernel_func} into Eq. \eqref{opt_glmkcf}, we get the formulation of localized multiple kernel concept factorization:
+\begin{align}\label{opt_llmkcf}
+\min_{\mathbf{U}, \mathbf{V}, \mathbf{W}} \quad & \tr(\mathbf{K}_{\mathbf{W}}) - 2 \tr(\mathbf{V}^T \mathbf{K}_{\mathbf{W}} \mathbf{U}) + \tr(\mathbf{U}^T \mathbf{K}_{\mathbf{W}} \mathbf{U} \mathbf{V}^T \mathbf{V}) \nonumber \\
+& +  \lambda ||\mathbf{V}^T \mathbf{V} - \mathbf{I}||^2 \\
+\st \quad & \mathbf{U} \geq 0,  \mathbf{V} \geq 0, \mathbf{W} \geq 0, \mathbf{W}\mathbf{1}_{m} = \mathbf{1}_{n}  \nonumber
+\end{align}
+
+\subsection{Algorithm}
+Similar to the optimization of Eq.\eqref{opt_glmkcf}, we also introduce a block coordinate descent algorithm to solve it.
+
+\subsubsection{Optimizing w.r.t. $\mathbf{U}$ when $\mathbf{V}$ and $\mathbf{W}$ are fixed}
+When fixing $\mathbf{V}$ and $\mathbf{W}$, it is the same to optimize  $\mathbf{U}$ as Eq. \eqref{update_g_u}. Substitute $\mathbf{K_w}$ in Eq. \eqref{update_g_u} with $\mathbf{K_W}$, we obtain:
+\begin{align}\label{update_l_u}
+\mathbf{U}_{ij} & = \mathbf{U}_{ij} \frac{(\mathbf{K}_{\mathbf{W}} \mathbf{V})_{ij}^2 + \sqrt{(\mathbf{K}_{\mathbf{W}} \mathbf{V})_{ij} + 4 \mathbf{P}_{ij}^{+} \mathbf{P}_{ij}^{-} }}{2 \mathbf{P}_{ij}^{+}}
+\end{align}
+where $\mathbf{P}^{+} = \mathbf{K}_{\mathbf{W}}^{+} \mathbf{U} \mathbf{V}^{T} \mathbf{V}$, $\mathbf{P}^{-} = \mathbf{K}_{\mathbf{W}}^{-} \mathbf{U} \mathbf{V}^{T} \mathbf{V}$, and $\mathbf{K}_{\mathbf{W}}^{+} = \frac{|\mathbf{K}_{\mathbf{W}}| + \mathbf{K}_{\mathbf{W}}}{2}$, $\mathbf{K}_{\mathbf{W}}^{-} = \frac{|\mathbf{K}_{\mathbf{W}}| - \mathbf{K}_{\mathbf{W}}}{2}$.
+
+\subsubsection{Optimizing w.r.t. $\mathbf{V}$ when $\mathbf{U}$ and $\mathbf{W}$ are fixed}
+Similar to Eq. \eqref{update_V}, we update $\mathbf{V}$ as follows:
+\begin{align}\label{update_l_V}
+\mathbf{V}_{ij} = \mathbf{V}_{ij}^{t} \left( \frac{[ \mathbf{V}^{t} \mathbf{A}^{-} +  \mathbf{B}^{+} + 2 \lambda \oslash \mathbf{V}^{t}  ]_{ij} }{[ \mathbf{V}^{t} \mathbf{A}^{+} + \mathbf{B}^{-} + 2 \lambda \mathbf{V}^{t}  (\mathbf{V}^{t})^T  \mathbf{V}^{t} ]_{ij} } \right)^{\frac{1}{4}}
+\end{align}
+where $\mathbf{A}^{+} = \mathbf{U}^T \mathbf{K}_{\mathbf{W}}^{+} \mathbf{U}$, $\mathbf{A}^{-} = \mathbf{U}^T \mathbf{K}_{\mathbf{W}}^{-} \mathbf{U}$, $\mathbf{B}^{+} = \mathbf{K}_{\mathbf{W}}^{+} \mathbf{U}$ and $\mathbf{B}^{-} = \mathbf{K}_{\mathbf{W}}^{-} \mathbf{U}$.
+
+\subsubsection{Optimizing w.r.t. $\mathbf{W}$ when $\mathbf{U}$ and $\mathbf{V}$ are fixed}
+When fix $\mathbf{U}$ and $\mathbf{V}$, Eq.\eqref{opt_llmkcf} can be simplified as:
+\begin{align}\label{opt_W}
+\min_{\mathbf{W}} \quad & \tr\left(\mathbf{K}_{\mathbf{W}}(\mathbf{I}-2\mathbf{V}^T\mathbf{U}+\mathbf{UV}^T\mathbf{VU}^T)\right)   \\
+\st \quad  &\mathbf{W} \geq 0, \mathbf{W}\mathbf{1}_{m} = \mathbf{1}_{n}  \nonumber
+\end{align}
+Denote $\mathbf{G}=(\mathbf{I}-2\mathbf{V}^T\mathbf{U}+\mathbf{UV}^T\mathbf{VU}^T)$, and substitute Eq.\eqref{kernel_func} in Eq.\eqref{opt_W}, we have:
+\begin{align}\label{opt_W2}
+\min_{\mathbf{W}} \quad & \sum_{t=1}^{m} \mathbf{w}_t^T (\mathbf{K}^t \otimes \mathbf{G}) \mathbf{w}_t\\
+\st \quad & \mathbf{W} \geq 0, \mathbf{W} \mathbf{1}_{m} = \mathbf{1}_{n}. \nonumber
+\end{align}
+
+To optimize Eq. \eqref{opt_W2}, we can apply Proximal Gradient Descent \cite{PG} to solve $\mathbf{W}$. More specifically, we denote $\mathbf{M}^t=\mathbf{K}_t \otimes \mathbf{G}$ and $f(\mathbf{W})=\sum_{t=1}^{m} \mathbf{w}_t^T \mathbf{M} \mathbf{w}_t$, then linearize $f(\mathbf{W})$ at $\mathbf{W}^k$ and add a proximal term:
+\begin{align}
+g(\mathbf{W},\mathbf{W}^k) =  f(\mathbf{W}^k)+ \langle\nabla f(\mathbf{W}^k),\mathbf{W}-\mathbf{W}^k\rangle+\frac{\mu}{2}\|\mathbf{W}-\mathbf{W}^k\|_F^2
+\end{align}
+where $\nabla f$ is the gradient of $f(\cdot)$, and $\mu>L(f)$ where $L(f)$ is Lipschitz constant of $f(\cdot)$.
+
+Then we update $\mathbf{W}$ by solving:
+\begin{align}\label{update_W2}
+\mathbf{W}^{k+1}=\arg\min_{\mathbf{W}\geq0,\mathbf{W} \mathbf{1}_{m} = \mathbf{1}_{n}}\|\mathbf{W}-\left(\mathbf{W}^k-\frac{1}{\mu}\nabla f(\mathbf{W}^k)\right)\|_F^2
+\end{align}
+Let $\mathbf{H}=\mathbf{W}^k-\frac{1}{\mu}\nabla f(\mathbf{W}^k)$, to get $\mathbf{W}^{k+1}$, we need to solve the following optimization problem:
+\begin{align}\label{projection}
+\min_{\mathbf{W}}\quad & \|\mathbf{W}-\mathbf{H}\|_F^2 \\
+\st \quad & \mathbf{W}\geq0,\mathbf{W} \mathbf{1}_{m} = \mathbf{1}_{n} \nonumber
+\end{align}
+Eq. \eqref{projection} is row-decoupled and can be decomposed into $n$ subproblem. Each subproblem is a well-known Euclidean Projection onto Simplex problem and can be efficiently solved by root finding algorithm \cite{simplexprojection}. Algorithm 2 shows the process.
+
+\begin{algorithm}%[h]
+  \caption{The optimization algorithm of Euclidean Projection onto Simplex}
+  \label{alg_proj}
+  \begin{algorithmic}   
+  \REQUIRE{$\mathbf{h}$}
+  \STATE{sort $\mathbf{h}$ into $\mathbf{b}$ where $b_1 \geq b_2 \geq, ..., b_n$}
+  \STATE{find $\rho = \max \{ 1 \leq j \leq n: b_j + \frac{1}{j}(1 - \sum_{i=1}^{j} b_i) > 0 \}$}
+  \STATE{define $z = \frac{1}{\rho}(1 - \sum_{i=1}^{\rho} b_i)$}
+  \ENSURE{$\mathbf{w}$ with $w_j = \max\{h_j + z, 0\}, j = 1, ..., n$}
+  \end{algorithmic}
+\end{algorithm}
+According to \cite{simplexprojection}, Algorithm \ref{alg_proj} provides the global optima of \eqref{projection}. We use the result of Algorithm \ref{alg_proj} to update $\mathbf{W}$.
+
+Although Proximal Gradient Descent can be used to solve Eq. \eqref{opt_W2}, the converge rate is slow, i.e., $O(\frac{1}{\epsilon})$ \cite{}. Here to achieve more efficient optimization, we apply Nesterov's method \cite{} to accelerate the proximal gradient descent, which owns the convergence rate as $O(\frac{1}{\sqrt{\epsilon}})$. We construct a linear combination of $\mathbf{W}^k$ and $\mathbf{W}^{k+1}$ to update $\mathbf{Y}^{k+1}$ as follows:
+\begin{align}
+\mathbf{Y}^{k+1}=\mathbf{W}^k+\frac{\alpha_k-1}{\alpha_{k+1}}(\mathbf{W}^{k+1}-\mathbf{W}^k)
+\end{align}
+Then we substitute $\mathbf{W}^k$ in Eq. \eqref{update_W2} with $\mathbf{Y}^k$,
+\begin{align}\label{update_W3}
+\mathbf{W}^{k+1}=\argmin_{\mathbf{W}\geq0,\mathbf{W} \mathbf{1}_{m} = \mathbf{1}_{n}}\|\mathbf{W}-\left(\mathbf{Y}^k-\frac{1}{\mu}\nabla f(\mathbf{Y}^k)\right)\|_F^2
+\end{align}
+Eq. \eqref{update_W3} can be solved by Algorithm \ref{alg_proj} as discussed before. Algorithm \ref{apg_u} shows the process of the accelerated Proximal Gradient Descent.
+\begin{algorithm}
+    \caption{The accelerated Proximal Gradient Descent algorithm}
+  \label{apg_u}
+  \begin{algorithmic}
+  \REQUIRE{The initial constant $L_{0}$,  $a_1 = 1$, $\mathbf{Z}_1 = \mathbf{W}^{0}$.}
+    \STATE{Set $t=0$, $\bar{L}_{\textrm{candi}} = L_0$}
+  \REPEAT
+  \STATE{Set $\bar{L}_{\textrm{candi}} = L_{\textrm{old}}$;}
+  \STATE{Update $\mathbf{\bar{Z}}_{\textrm{candi}} = p_{\bar{L}_{\textrm{candi}}}(\mathbf{W}_{\textrm{old}})$ using Algorithm xxx;}
+  \STATE{While $f(\mathbf{\bar{Z}}_{\textrm{candi}}) > g_{\bar{L}}(\mathbf{\bar{Z}}_{\textrm{candi}}, \mathbf{Z}_{t})$, do}
+  \STATE{$\textrm{        }\textrm{        }$ Set $\bar{L}_{\textrm{candi}} = \gamma \bar{L}_{\textrm{candi}} $;}
+  \STATE{$\textrm{        }\textrm{        }$ Update $\mathbf{\bar{W}}_{\textrm{candi}} = p_{\bar{L}_{\textrm{candi}}}(\mathbf{Z}_{t})$ using Algorithm xxx;}
+  \STATE{end while}
+  \STATE{Set $L_t = \bar{L}_{\textrm{candi}}$;}
+  \STATE{Set $\mathbf{W}_t = p_{L_{t}}(\mathbf{Z}_{t})$;}
+  \STATE{Set $a_{t+1} = \frac{1 + \sqrt{1 + 4 a_{t}^2}}{2}$;}
+  \STATE{Set $\mathbf{Z}_{t+1} = \mathbf{W}_t + (\frac{a_{t} - 1}{a_{t+1}})(\mathbf{W}_t - \mathbf{W}_{t-1})$;}
+  \UNTIL{Converges}
+    \ENSURE{$\mathbf{U}_{t}$.}
+  \end{algorithmic}
+\end{algorithm}
+
+The convergence of this algorithm is stated in the following theorem.
+\begin{theorem}
+\cite{} Let ${\mathbf{W}^k}$ be the sequence generated by Algorithm \ref{apg_u}, then for any $k \geq 1$, we have
+\begin{align}
+f(\mathbf{W}^k)-f(\mathbf{W}^*)\leq \frac{2\gamma L \|\mathbf{W}^1-\mathbf{W}^*\|_F^2}{(k+1)^2},
+\end{align}
+where $L$ is the Lipschitz constant of the gradient of $f(\mathbf{W})$, and $\mathbf{W}^*=\argmin_\mathbf{W}f(\mathbf{W})$.
+\end{theorem}
+
+It is easy to verify that $f(\mathbf{W})$ is Lipschitz continuous. Thus Theorem 4.3.4 shows that the convergence rate of the accelerated proximal gradient
+descent method is $O(\frac{1}{\sqrt{\epsilon}})$.
+
+The whole algorithm of localized multiple kernel concept factorization is summarized in Algorithm \ref{alg_lmkcf}.
+\begin{algorithm}
+    \caption{The algorithm of LMKCF}
+  \label{alg_lmkcf}
+  \begin{algorithmic}
+  \REQUIRE{A set of kernels $\{K^{i}\}_{i=1}^{m}$, the desired number of cluster $c$.}
+    \STATE{Initialize the kernel weight $w_{ij} = 1/m$ for each kernel;}
+    \STATE{Initialize the diagonal matrix $D=I_{n}$, where $I_{n}$ is the identity matrix;}
+  \REPEAT
+  \STATE{Update the association matrix $\mathbf{U}$ by using \eqref{update_l_u};}
+  \STATE{Update the projection matrix $\mathbf{V}$ by Eq. \eqref{update_l_V};}
+  \STATE{Update the kernel weight $\mathbf{W}$ by Algorithm \ref{apg_u};}
+  \STATE{Update the estimated kernel $\mathbf{K}_{\mathbf{W}}$ by Eq. \eqref{kernel_func};}
+  \UNTIL{Converges}
+    \ENSURE{association matrix $\mathbf{U}$, projection matrix $\mathbf{V}$, and the kernel weights $\mathbf{W}$.}
+  \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Convergence and Complexity}
+The objective function in Eq. \eqref{opt_llmkcf} is nonincreasing under the derived updating rules. Since the objective function is bounded below, the convergence of the algorithm is guaranteed.
+
+In the following, we give the complexity analysis of the optimization algorithm. Initially, we need to compute $m$ kernel matrices $\{ \mathbf{K}^{i}\}_{i=1}^{m}$, whose cost is generally $\mathcal{O}(m n^2 d)$, where $n$ is the number of samples and $d$ is the number of features. The cost of each iteration is given by
+\begin{itemize}
+\item Updating of $\mathbf{U}$: the computational cost of $\mathbf{P}^{+}$ and $\mathbf{P}^{+}$ is $\mathcal{O}(n^2 k + k^2 n)$and, the cost of evaluating Eq. \eqref{update_g_u} is $\mathcal{O}(n^2 k)$.
+\item Updating of $\mathbf{V}$: the computational cost of $\mathbf{A}^{+}$ and $\mathbf{A}^{-}$ is $\mathcal{O}(n^2 k + k^2 n)$, the computational cost of $\mathbf{B}^{+}$ and $\mathbf{B}^{-}$ is $\mathcal{O}(n^2 k)$, the cost of evaluating Eq. \eqref{update_V} is $\mathcal{O}(n k^2)$.
+\item Updating of $\mathbf{W}$: the computational cost of compute the gradient is $O(n^2m)$, the cost of Euclidean projection is $O(nmlogm)$.
+\item Updating of $\mathbf{K}_{\mathbf{w}}$: the computational cost of $\mathbf{K}_{\mathbf{w}}$ is $n^2 m $.
+\end{itemize}
+
+
+
+
+\section{Conclusion}
+The conclusion goes here.
+
+
+
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+\section{Experiments}
+\subsection{Evaluation Metrics}
+  To evaluate their performance, we compare the generated clusters with the ground truth by computing the following two performance measures.
+  
+  \textbf{Clustering accuracy (ACC)}. The first performance measure is the clustering accuracy, which discovers the one-to-one relationship between clusters and classes. Given a point $\mathbf{x}_i$, let $p_i$ and $q_i$ be the clustering result and the ground truth label, respectively. The ACC is defined as follows:
+  \begin{equation}
+    \textrm{ACC} = \frac{1}{n}\sum_{i=1}^{n}\delta(q_i, map(p_i)),
+  \end{equation}
+  where $n$ is the total number of samples and $\delta(x,y)$ is the delta function that equals 1 if $x=y$ and equals 0 otherwise, and $map(\cdot)$ is the permutation mapping function that maps each cluster index to a true class label. The best mapping can be found by using the Kuhn-Munkres algorithm \cite{map}. The greater clustering accuracy means the better clustering performance.
+  
+  \textbf{Normalized mutual information (NMI)}. Another evaluation metric that we adopt here is the normalized mutual information, which is widely used for determining the quality of clustering. Let $\mathcal{C}$ be the set of clusters from the ground truth and $\mathcal{C'}$ obtained from a clustering algorithm. Their mutual information $MI(\mathcal{C}, \mathcal{C'})$ is defined as follows:
+  \begin{equation}
+    MI(\mathcal{C}, \mathcal{C'}) = \sum_{c_i \in \mathcal{C},c'_j \in \mathcal{C'}} p(c_i,c'_j) \log \frac{p(c_i,c'_j)}{p(c_i) p(c'_j)},
+  \end{equation}
+  where $p(c_i)$ and $p(c'_j)$ are the probabilities that a data point arbitrarily selected from the data set belongs to the cluster $c_i$ and $c'_j$, respectively, and $p(c_i,c'_j)$ is the joint probability that the arbitrarily selected data point belongs to the cluster $c_i$ as well as $c'_j$ at the same time. In our experiments, we use the normalized mutual information as follows:
+  \begin{equation}
+    NMI(\mathcal{C}, \mathcal{C'}) = \frac{MI(\mathcal{C}, \mathcal{C'})}{\max(H(\mathcal{C}), H(\mathcal{C'}))},
+  \end{equation}
+  where $H(\mathcal{C})$ and  $H(\mathcal{C'})$ are the entropies of $\mathcal{C}$ and $\mathcal{C'}$, respectively. Again, a larger NMI indicates a better performance.
+
+\appendices
+
+\section{}\label{appendix_A}
+\begin{lemma}\label{lemma_ineq}
+For any nonnegative matrices $\mathbf{F} \in \mathcal{R}^{n \times n}$, $\mathbf{G} \in \mathcal{R}^{k \times k}$, $\mathbf{H} \in \mathcal{R}^{n \times k}$, $\mathbf{H}^{'} \in \mathcal{R}^{n \times k}$, and $\mathbf{F}$, $\mathbf{G}$ are symmetric, then the following inequality holds
+\begin{align}
+\tr(\mathbf{H}^T \mathbf{F} \mathbf{H} \mathbf{G}) \leq \sum_{i=1}^{n} \sum_{j=1}^{k} \frac{(\mathbf{F} \mathbf{H}^{'} \mathbf{G})_{ij} \mathbf{H}_{ij}^{2} }{\mathbf{H}_{ij}^{'}}.
+\end{align}
+\end{lemma}
+
+%\section{Proof of theorem \ref{theorem_auxilary}}
+
+\begin{proof}
+By appling Lemma \ref{lemma_ineq} and the inequality $a \leq \frac{a^2 + b^2}{2b}, \forall a,b >0$, we have
+\begin{align}
+&\tr(\mathbf{V} \mathbf{A}^{+} \mathbf{V}^T ) \leq \sum_{ij} \frac{(\mathbf{V}^t \mathbf{A}^{+})_{ij} \mathbf{V}_{ij}^{2}}{\mathbf{V}_{ij}^{t}} = \sum_{ij}(\mathbf{V}^t \mathbf{A}^{+})_{ij} \mathbf{V}_{ij}^{t} \frac{\mathbf{V}_{ij}^{2}}{(\mathbf{V}_{ij}^{t})^2}\nonumber  \\
+&\leq \frac{1}{2}\sum_{ij}(\mathbf{V}^t \mathbf{A}^{+})_{ij} \mathbf{V}_{ij}^{t} (\frac{\mathbf{V}_{ij}^{4}}{(\mathbf{V}_{ij}^{t})^4} + 1)
+\end{align}
+By using the inequality $\mathbf{z} \geq 1 + \log z, \forall z > 0$, we have
+\begin{align}
+\tr(\mathbf{V} \mathbf{A}^{-} \mathbf{V}^T ) &\geq \sum_{ijk} \mathbf{A}_{jk}^{-} \mathbf{V}_{ij}^{t} \mathbf{V}_{ik}^{t}(1 + \log\frac{\mathbf{V}_{ij} \mathbf{V}_{ik}}{\mathbf{V}_{ij}^t \mathbf{V}_{ik}^t}) \\
+\tr(\mathbf{V}^T \mathbf{B}^{+})  &\geq \sum_{ij} \mathbf{B}_{ij}^{+} \mathbf{V}_{ij}^{t}(1 + \log\frac{\mathbf{V}_{ij}}{\mathbf{V}_{ij}^t}) 
+\end{align}
+By using the inequality $a \leq \frac{a^2 + b^2}{2b}, \forall a,b >0$, we have
+\begin{align}
+& \tr(\mathbf{V}^T \mathbf{B}^{-}) \leq  \sum_{ij} \mathbf{B}_{ij}^{-} \frac{\mathbf{V}_{ij}^{2} + (\mathbf{V}_{ij}^{t})^{2}}{2\mathbf{V}_{ij}^t} \nonumber \\
+=& \frac{1}{2} \sum_{ij} \mathbf{B}_{ij}^{-}\mathbf{V}_{ij}^t \frac{\mathbf{V}_{ij}^2 }{(\mathbf{V}_{ij}^t)^2}  + \sum_{ij} \mathbf{B}_{ij}^{-} \frac{ (\mathbf{V}_{ij}^{t})^{2}}{2\mathbf{V}_{ij}^t} \nonumber \\
+\leq& \frac{1}{4} \sum_{ij} \mathbf{B}_{ij}^{-}\mathbf{V}_{ij}^t \left(\frac{\mathbf{V}_{ij}^4 }{(\mathbf{V}_{ij}^t)^4} + 1 \right)  + \sum_{ij} \mathbf{B}_{ij}^{-} \frac{ (\mathbf{V}_{ij}^{t})^{2}}{2\mathbf{V}_{ij}^t} 
+\end{align}
+By using the Jensen inequality, we have
+\begin{align}
+&||\mathbf{V}^T \mathbf{V} - \mathbf{I}||^2 = \sum_{jk} (\sum_{i} \mathbf{V}_{ij} \mathbf{V}_{ik} - \mathbf{I}_{jk})^2 \\
+\leq& \sum_{jk} \left[ \sum_{i} \frac{ \mathbf{V}_{ij}^{t} \mathbf{V}_{ik}^{t} }{ [(\mathbf{V}^{t})^T(\mathbf{V}^{t})]_{jk}}  \left( \mathbf{I}_{jk} - \frac{[(\mathbf{V}^{t})^T(\mathbf{V}^{t})]_{jk} }{ \mathbf{V}_{ij}^{t} \mathbf{V}_{ik}^{t} } \mathbf{V}_{ij} \mathbf{V}_{ik}  \right)^2  \right] \nonumber   \\
+=& \sum_{jk} \left( \mathbf{I}_{jk} - 2\sum_{i} \mathbf{I}_{jk} \mathbf{V}_{ij} \mathbf{V}_{ik} + \sum_{i} \frac{[(\mathbf{V}^{t})^T(\mathbf{V}^{t})]_{jk} }{ \mathbf{V}_{ij}^{t} \mathbf{V}_{ik}^{t} } \mathbf{V}_{ij}^2 \mathbf{V}_{ik}^2 \right) \nonumber 
+\end{align}
+Similarly, we futher have 
+\begin{align}
+&\sum_{ijk} \mathbf{I}_{jk} \mathbf{V}_{ij} \mathbf{V}_{ik} = \tr(\mathbf{V} \mathbf{V}^T ) \nonumber \\
+\geq&  \sum_{ijk} \mathbf{I}_{jk}\mathbf{V}_{ij}^t \mathbf{V}_{ik}^t  ( 1 + \log \frac{\mathbf{V}_{ij} \mathbf{V}_{ik}}{\mathbf{V}_{ij}^t \mathbf{V}_{ik}^t} ) 
+\end{align}
+\begin{align}
+& \sum_{ijk}  [(\mathbf{V}^{t})^T(\mathbf{V}^{t})]_{jk} \mathbf{V}_{ij}^{t} \mathbf{V}_{ik}^{t} \frac{\mathbf{V}_{ij}^2 \mathbf{V}_{ik}^2}{ (\mathbf{V}_{ij}^{t})^{2} (\mathbf{V}_{ik}^{t})^{2} } \nonumber \\
+\leq & \frac{1}{2} \sum_{ijk}   [(\mathbf{V}^{t})^T(\mathbf{V}^{t})]_{jk} \mathbf{V}_{ij}^{t} \mathbf{V}_{ik}^{t} \left( \frac{\mathbf{V}_{ij}^{4}}{(\mathbf{V}_{ij}^{t})^{4}} + \frac{\mathbf{V}_{ik}^{4}}{(\mathbf{V}_{ik}^{t})^{4}} \right)
+\end{align}
+By summing over all the bounds, we can get $\mathit{g}(\mathbf{V}, \mathbf{V}^t)$ in Eq. \eqref{function_gvv}, which obviously satisfies the condition in Lemma \ref{lemma_auxilary}, that is, (1) $\mathit{g}(\mathbf{V}, \mathbf{V}^t) \geq \mathit{f}(\mathbf{V})$; (2)$\mathit{g}(\mathbf{V}, \mathbf{V}) = \mathit{f}(\mathbf{V})$.
+To find the minimum of $\mathit{g}(\mathbf{V}, \mathbf{V}^t)$, we have
+\begin{align}
+\frac{\partial \mathit{g}(\mathbf{V}, \mathbf{V}^t)}{\partial \mathbf{V}_{ij}} &= 2(\mathbf{V}^t \mathbf{A}^{+})_{ij} \frac{\mathbf{V}_{ij}^{3}}{(\mathbf{V}_{ij}^{t})^3}  - 2 (\mathbf{V}^t \mathbf{A}^{-})_{ij} \frac{\mathbf{V}_{ij}^{t}} {\mathbf{V}_{ij}} \nonumber \\
+& - 2 \mathbf{B}_{ij}^{+} \frac{\mathbf{V}_{ij}^{t}} {\mathbf{V}_{ij}}  + 2 \mathbf{B}_{ij}^{-} \frac{\mathbf{V}_{ij}^3 }{(\mathbf{V}_{ij}^{t})^{3}}  - 4 \lambda \mathbf{V}_{ij}^t\frac{\mathbf{V}_{ij}^t}{\mathbf{V}_{ij}} \nonumber \\
+&+ 4 \lambda \left(\mathbf{V}^{t} (\mathbf{V}^{t})^T\mathbf{V}^{t} \right)_{ij} \frac{\mathbf{V}_{ij}^3 }{(\mathbf{V}_{ij}^{t})^{3}} 
+\end{align}
+and the Hessian matrix of $\mathit{g}(\mathbf{V}, \mathbf{V}^t)$
+\begin{align}
+\frac{\partial^{2} \mathit{g}(\mathbf{V}, \mathbf{V}^t)}{\partial \mathbf{V}_{ij} \mathbf{V}_{ab}} &= \delta_{ia} \delta_{jb} \left( 6(\mathbf{V}^t \mathbf{A}^{+})_{ij} \frac{\mathbf{V}_{ij}^{2}}{(\mathbf{V}_{ij}^{t})^3}  + 2 (\mathbf{V}^t \mathbf{A}^{-})_{ij} \frac{\mathbf{V}_{ij}^{t}} {\mathbf{V}_{ij}^2} \right. \nonumber \\
+& + 2 \mathbf{B}_{ij}^{+} \frac{\mathbf{V}_{ij}^{t}} {\mathbf{V}_{ij}^2}  + 6 \mathbf{B}_{ij}^{-} \frac{\mathbf{V}_{ij}^2 }{(\mathbf{V}_{ij}^{t})^{3}}  + 4 \lambda \mathbf{V}_{ij}^t\frac{\mathbf{V}_{ij}^t}{\mathbf{V}_{ij}^2}  \nonumber \\
+&+ \left. 12 \lambda \left(\mathbf{V}^{t} (\mathbf{V}^{t})^T\mathbf{V}^{t} \right)_{ij} \frac{\mathbf{V}_{ij}^2 }{(\mathbf{V}_{ij}^{t})^{3}} \right)
+\end{align}
+is a diagonal matrix with positive diagonal elements. Thus $\mathit{g}(\mathbf{V}, \mathbf{V}^t)$ is a convex function of $\mathbf{V}$. Therefore, we can obtain the global minimum of $\mathit{g}(\mathbf{V}, \mathbf{V}^t)$ by setting $\frac{\partial \mathit{g}(\mathbf{V}, \mathbf{V}^t)}{\partial \mathbf{V}_{ij}} = 0$ and solving for $\mathbf{V}$, from which we can get Eq. \eqref{update_U}.
+%\begin{align}
+%\mathbf{V}_{ij} = \mathbf{V}_{ij}^{t} \left( \frac{[ \mathbf{V}^{t} \mathbf{A}^{-} +  \mathbf{B}^{+} + 2 \lambda \oslash \mathbf{V}^{t}  ]_{ij} }{[ \mathbf{V}^{t} \mathbf{A}^{+} + \mathbf{B}^{-} + 2 \lambda \mathbf{V}^{t}  (\mathbf{V}^{t})^T  \mathbf{V}^{t} ]_{ij} } \right)^{\frac{1}{4}}
+%\end{align}
+%where $\oslash$ is the element-wise division.
+\end{proof}
+
+
+
+
+% you can choose not to have a title for an appendix
+% if you want by leaving the argument blank
+\section{}
+Appendix two text goes here.
+
+
+% use section* for acknowledgment
+\ifCLASSOPTIONcompsoc
+  % The Computer Society usually uses the plural form
+  \section*{Acknowledgments}
+\else
+  % regular IEEE prefers the singular form
+  \section*{Acknowledgment}
+\fi
+
+
+The authors would like to thank...
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\begin{thebibliography}{1}
+
+\bibitem{IEEEhowto:kopka}
+H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+\end{thebibliography}
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+\begin{IEEEbiography}{Michael Shell}
+Biography text here.
+\end{IEEEbiography}
+
+% if you will not have a photo at all:
+\begin{IEEEbiographynophoto}{John Doe}
+Biography text here.
+\end{IEEEbiographynophoto}
+
+% insert where needed to balance the two columns on the last page with
+% biographies
+%\newpage
+
+\begin{IEEEbiographynophoto}{Jane Doe}
+Biography text here.
+\end{IEEEbiographynophoto}
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+% that's all folks
+\end{document}
+
+

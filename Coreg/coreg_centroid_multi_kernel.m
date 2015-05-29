@@ -1,5 +1,5 @@
 function coreg_centroid_multi_kernel(dataset, kernel_type, nRepeat)
-lambdaCandidates = 10.^(-2:2);
+lambdaCandidates = 10.^(-3:3);
 
 data_dir = fullfile(pwd, '..', 'data');
 kernel_dir = fullfile(data_dir, [dataset, '_kernel']);

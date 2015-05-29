@@ -1,0 +1,78 @@
+Total number of Kernels: 12!
+KCF orth on 1 of 12 Kernel(bbcnewssport_737n_1000d_5c_tfidf_uni_kernel_gaussian_0.01_post_NCW-SCALE-SYM) begin ...
+KenelKmeans 20iterations!
+KCF orth 1 of 20 iterations begin ...
+KCF orth 1 of 20 iterations done.
+KCF orth exe time: 9.489
+KCF orth 2 of 20 iterations begin ...
+KCF orth 2 of 20 iterations done.
+KCF orth exe time: 9.333
+KCF orth 3 of 20 iterations begin ...
+KCF orth 3 of 20 iterations done.
+KCF orth exe time: 9.727
+KCF orth 4 of 20 iterations begin ...
+KCF orth 4 of 20 iterations done.
+KCF orth exe time: 10.827
+KCF orth 5 of 20 iterations begin ...
+KCF orth 5 of 20 iterations done.
+KCF orth exe time: 8.762
+KCF orth 6 of 20 iterations begin ...
+KCF orth 6 of 20 iterations done.
+KCF orth exe time: 9.277
+KCF orth 7 of 20 iterations begin ...
+KCF orth 7 of 20 iterations done.
+KCF orth exe time: 9.497
+KCF orth 8 of 20 iterations begin ...
+KCF orth 8 of 20 iterations done.
+KCF orth exe time: 8.776
+KCF orth 9 of 20 iterations begin ...
+KCF orth 9 of 20 iterations done.
+KCF orth exe time: 7.992
+KCF orth 10 of 20 iterations begin ...
+KCF orth 10 of 20 iterations done.
+KCF orth exe time: 7.808
+KCF orth 11 of 20 iterations begin ...
+KCF orth 11 of 20 iterations done.
+KCF orth exe time: 7.694
+KCF orth 12 of 20 iterations begin ...
+KCF orth 12 of 20 iterations done.
+KCF orth exe time: 7.687
+KCF orth 13 of 20 iterations begin ...
+KCF orth 13 of 20 iterations done.
+KCF orth exe time: 7.593
+KCF orth 14 of 20 iterations begin ...
+KCF orth 14 of 20 iterations done.
+KCF orth exe time: 8.398
+KCF orth 15 of 20 iterations begin ...
+KCF orth 15 of 20 iterations done.
+KCF orth exe time: 9.555
+KCF orth 16 of 20 iterations begin ...
+KCF orth 16 of 20 iterations done.
+KCF orth exe time: 9.082
+KCF orth 17 of 20 iterations begin ...
+KCF orth 17 of 20 iterations done.
+KCF orth exe time: 9.376
+KCF orth 18 of 20 iterations begin ...
+KCF orth 18 of 20 iterations done.
+KCF orth exe time: 10.153
+KCF orth 19 of 20 iterations begin ...
+KCF orth 19 of 20 iterations done.
+KCF orth exe time: 10.704
+KCF orth 20 of 20 iterations begin ...
+{操作在以下过程中被用户终止 <a href="matlab:helpUtils.errorDocCallback('KCF_orth_Multi', 'E:\Sync\LMKCF\KCF_orth\KCF_orth_Multi.m', 113)" style="font-weight:bold">KCF_orth_Multi</a> (<a href="matlab: opentoline('E:\Sync\LMKCF\KCF_orth\KCF_orth_Multi.m',113,0)">line 113</a>)
+
+
+位置 <a href="matlab:helpUtils.errorDocCallback('KCF_orth_single_kernel', 'E:\Sync\LMKCF\KCF_orth\KCF_orth_single_kernel.m', 21)" style="font-weight:bold">KCF_orth_single_kernel</a> (<a href="matlab: opentoline('E:\Sync\LMKCF\KCF_orth\KCF_orth_single_kernel.m',21,0)">line 21</a>)
+        [~, V, nIter, objhistory] = KCF_orth_Multi(K, nClass,
+        struct('maxIter', [], 'nRepeat', 1), [], []);
+
+位置 <a href="matlab:helpUtils.errorDocCallback('KCF_orth_all_kernel', 'E:\Sync\LMKCF\KCF_orth\KCF_orth_all_kernel.m', 50)" style="font-weight:bold">KCF_orth_all_kernel</a> (<a href="matlab: opentoline('E:\Sync\LMKCF\KCF_orth\KCF_orth_all_kernel.m',50,0)">line 50</a>)
+        kcf_res =KCF_orth_single_kernel(K, y, fullfile(res_dir,
+        iFile(1:end-4)), nRepeat);
+
+位置 <a href="matlab:helpUtils.errorDocCallback('KCF_orth_single_data', 'E:\Sync\LMKCF\KCF_orth\KCF_orth_single_data.m', 11)" style="font-weight:bold">KCF_orth_single_data</a> (<a href="matlab: opentoline('E:\Sync\LMKCF\KCF_orth\KCF_orth_single_data.m',11,0)">line 11</a>)
+KCF_orth_all_kernel(dataset, kernel_type, nRepeat);
+
+位置 <a href="matlab:helpUtils.errorDocCallback('run_single_dataset', 'E:\Sync\LMKCF\exp\run_single_dataset.m', 26)" style="font-weight:bold">run_single_dataset</a> (<a href="matlab: opentoline('E:\Sync\LMKCF\exp\run_single_dataset.m',26,0)">line 26</a>)
+KCF_orth_single_data(dataset, kernel_type, nRepeat);
+} 

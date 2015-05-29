@@ -53,16 +53,18 @@ NormV = 1;
 nSmp = size(Ks,1);
 nKernel = size(Ks,3);
 
+Z = ones(nSmp, nKernel)/nKernel;
+K = calculate_localized_kernel_theta(Ks, Z);
+
 if isempty(U)
     U = abs(rand(nSmp,c));
     V = abs(rand(nSmp,c));
+    [U,V] = NormalizeUV(K, U, V, NormV, Norm);
 else
     nRepeat = 1;
 end
 
-Z = ones(nSmp, nKernel)/nKernel;
-K = calculate_localized_kernel_theta(Ks, Z);
-[U,V] = NormalizeUV(K, U, V, NormV, Norm);
+
 
 selectInit = 1;
 if nRepeat == 1
@@ -88,10 +90,10 @@ while tryNo < nRepeat
     tryNo = tryNo+1;
     nIter = 0;
     maxErr = 1;
-    mskqpopt_status = 1;
     
     while(maxErr > differror)
         % ===================== update U/V ========================
+        
         [U, V] = KCF_Multi(K, c, struct('maxIter', [], 'nRepeat', 1), U, V);
         
         % ===================== update Z ========================
@@ -100,30 +102,12 @@ while tryNo < nRepeat
         M = M * M';        % n^3
         M = (M + M') / 2;
         clear UV;
-        
-        
-        if ~isempty(which('mskqpopt.m')) && nSmp * nKernel < 3000 && mskqpopt_status > 0
-            Q = zeros(nSmp * nKernel, nSmp * nKernel);
-            for iKernel = 1:nKernel
-                start_index = (iKernel - 1) * nSmp + 1;
-                end_index = iKernel * nSmp;
-                Q(start_index:end_index, start_index:end_index) = M .* Ks(:,:,iKernel);
-            end
-            res = mskqpopt(Q, zeros(nSmp * nKernel, 1), repmat(eye(nSmp, nSmp), 1, nKernel), ones(nSmp, 1), ones(nSmp, 1), zeros(nSmp * nKernel, 1), ones(nSmp * nKernel, 1), [], 'minimize echo(0)');
-            if isfield(res, 'sol')
-                Z = reshape(res.sol.itr.xx, nSmp, nKernel);
-                mskqpopt_status = 1;
-            else
-                Z = ones(nSmp, nKernel)/nKernel;
-                mskqpopt_status = 0;
-            end
-        else
-            Km = zeros(nSmp, nSmp, nKernel);
-            for iKernel = 1:nKernel
-                Km(:,:,iKernel) = M .* Ks(:,:,iKernel);
-            end
-            Z = QP_APG( Km, Z);
+        Km = zeros(nSmp, nSmp, nKernel);
+        for iKernel = 1:nKernel
+            Km(:,:,iKernel) = M .* Ks(:,:,iKernel);
         end
+        Z = update_W_apg( Km, Z);
+        
         K = calculate_localized_kernel_theta(Ks, Z);
         
         nIter = nIter + 1;
@@ -251,5 +235,85 @@ function K_Theta = calculate_localized_kernel_theta(K, Theta)
 K_Theta = zeros(size(K(:, :, 1)));
 for m = 1:size(K, 3)
     K_Theta = K_Theta + (Theta(:, m) * Theta(:, m)') .* K(:, :, m);
+end
+end
+
+function [X_new, objHistory] = update_W_apg(Ks, X_old)
+%
+% [1] An Accelerated Gradient Method for Trace Norm Minimization, ICML 09, Algorithm 2
+%
+
+[n, ~, p] = size(Ks);
+
+a = 1;
+gamma = 1.05;
+Lf = 100;
+maxiter_pg = 100;
+myeps = 1e-8;
+epsilon = inf;
+
+objHistory = [];
+
+iter = 0;
+Z_new = X_old;
+a_new = a;
+while epsilon > myeps && iter < maxiter_pg
+    
+    %%----------------------------------------------------------
+    % search the valid Lipschitz constant, which satisfies
+    %   Obj( proj(Z_old, Lf)) < Obj_pg( proj(Z_old, Lf), Z_old)
+    %%----------------------------------------------------------
+    Lf_candi = Lf;
+    is_valid_Lf = true;
+    Z_old = Z_new;
+    % extract non-loop parts
+    [obj_pg_1, grad_Z] = obj_W(Ks, Z_old);
+    while is_valid_Lf
+        % compute objective value
+        Y = Z_old - 1 ./ Lf_candi * grad_Z;
+        X_candi = SimplexProj(Y);
+        obj_candi = obj_W(Ks, X_candi);
+
+        % compute objective value of auxilary function
+        X_diff = (X_candi - Z_old);
+        obj_pg_2 = sum(sum(X_diff .* grad_Z));
+        obj_pg_3 = sum(sum(X_diff .* X_diff));
+        obj_pg = obj_pg_1 + obj_pg_2 + .5 * Lf_candi * obj_pg_3;
+        if obj_candi > obj_pg
+            Lf_candi = Lf_candi * gamma;
+        else
+            is_valid_Lf = false;
+        end
+    end
+    Lf = Lf_candi; % get the valid Lipschitz constant
+    if iter > 1
+        X_old = X_new;
+    end
+    X_new = X_candi; % get the result from proximal operator with valid Lipschitz constant
+    a_old = a_new;
+    a_new = ( 1 + sqrt(1 + 4 * a_old^2)) / 2;
+    Z_new = X_new + (a_old - 1) / a_new * (X_new - X_old);
+    
+    obj = obj_W(Ks, X_new);
+    objHistory = [objHistory; obj]; %#ok
+    
+    epsilon = sum(sum((X_new - X_old).^2));
+    
+    if iter > 1 && objHistory(end) > objHistory(end-1)
+        epsilon = 0;
+        X_new = X_old;
+        objHistory = objHistory(1:end-1);
+    end
+    iter = iter + 1;
+end
+end
+
+function [obj, grad_W] = obj_W(Ks, W)
+[n, ~, p] = size(Ks);
+obj = 0;
+grad_W = zeros(n,p);
+for i = 1:p
+    grad_W(:,i) = Ks(:,:,i) * W(:,i);
+    obj = obj + W(:,i)' * grad_W(:,i);
 end
 end

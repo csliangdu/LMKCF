@@ -4,6 +4,8 @@ addpath(fullfile(pwd, '..', 'data'));
 addpath(fullfile(pwd, '..', 'KernelKmeans'));
 addpath(fullfile(pwd, '..', 'SC'));
 addpath(fullfile(pwd, '..', 'KCF'));
+addpath(fullfile(pwd, '..', 'KCF_simplex'));
+addpath(fullfile(pwd, '..', 'KCF_orth'));
 addpath(fullfile(pwd, '..', 'LCCF'));
 % addpath(fullfile(pwd, '..', 'LCF'));
 addpath(fullfile(pwd, '..', 'MACF'));
@@ -21,17 +23,20 @@ diary on;
 logfile = fullfile(pwd, ['log_exp_', dataset, '_', datestr(now,30)]);
 diary(logfile);
 
+% KCF_orth_single_data(dataset, kernel_type, nRepeat);
+
 KernelKmeans_single_data(dataset, kernel_type, nRepeat);
 LMKKM_single_data(dataset, kernel_type, nRepeat);
 RMKKM_single_data(dataset, kernel_type, nRepeat);
 
 KCF_single_data(dataset, kernel_type, nRepeat);
+KCF_simplex_single_data(dataset, kernel_type, nRepeat);
 LCCF_single_data(dataset, kernel_type, nRepeat);
 % LCF_single_data(dataset, kernel_type, nRepeat);
 MACF_single_data(dataset, kernel_type, nRepeat);
 GMKCF_single_data(dataset, kernel_type, nRepeat);
 LMKCF_single_data(dataset, kernel_type, nRepeat);
-
+% 
 SC_single_data(dataset, kernel_type, nRepeat);
 coreg_centroid_single_data(dataset, kernel_type, nRepeat);
 AASC_single_data(dataset, kernel_type, nRepeat);
@@ -70,3 +75,5 @@ rmpath(fullfile(pwd, '..', 'LMKKM'));
 rmpath(fullfile(pwd, '..', 'RMKKM'));
 rmpath(fullfile(pwd, '..', 'GMKCF'));
 rmpath(fullfile(pwd, '..', 'LMKCF'));
+rmpath(fullfile(pwd, '..', 'KCF_simplex'));
+rmpath(fullfile(pwd, '..', 'KCF_orth'));

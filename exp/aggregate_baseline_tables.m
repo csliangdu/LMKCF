@@ -1,7 +1,7 @@
 function aggregate_baseline_tables(dataset, kernel_type)
 %
 prefix = fullfile(pwd, [dataset, '_res'], [dataset, '_res']);
-apps = {'kkm', 'sc', 'kcf', 'lccf', 'macf'};
+apps = {'kkm', 'sc', 'kcf', 'kcf_simplex',  'lccf', 'macf'};
 
 
 % load results with single kernel
@@ -20,7 +20,7 @@ if iscell(kernel_type)
 end
 k_idx = unique(k_idx);
 
-r_s = [res_kkm_aio(k_idx,:); res_sc_aio(k_idx,:); res_kcf_aio(k_idx,:); res_lccf_aio(k_idx,:);  res_macf_aio(k_idx,:)];%#ok
+r_s = [res_kkm_aio(k_idx,:); res_sc_aio(k_idx,:); res_kcf_aio(k_idx,:); res_kcf_simplex_aio(k_idx,1:3); res_kcf_simplex_aio(k_idx,4:6);  res_lccf_aio(k_idx,:);  res_macf_aio(k_idx,:)];%#ok
 
 % load results with equal weighted kernel
 % for app = apps
@@ -50,12 +50,15 @@ r_m = [res_coreg_centroid_aio; res_aasc_aio; res_lmkkm_aio; res_rmkkm_aio; res_g
 % c_measures = {'Accuracy', 'Normalized Mutual Information', 'Purity'};
 c_measures = {'acc', 'nmi', 'purity'};
 myled = {'KKM-b', 'KKM-a', 'SC-b', 'SC-a',  ...
-    'KCF-b','KCF-a', 'LCCF-b','LCCF-a',...
+    'KCF-b','KCF-a', ...
+    'KCF-simplex-b','KCF-simplex-a', ...
+    'KCF-simplex-max-b','KCF-simplex-max-a', ...    
+    'LCCF-b','LCCF-a',...
     'MACF-b','MACF-a', ...
     'Coreg', 'AASC', 'LMKKM', 'RMKKM', 'GMKCF', 'LMKCF'...%
     };
 for idx_m = 1:length(c_measures)
-    
+    apps = {'kkm', 'sc', 'kcf', 'kcf_sim_km', 'kcf_sim_max',  'lccf', 'macf'};
     res_s_s = reshape(r_s(:,idx_m), size(r_s,1)/length(apps), length(apps));
     table_single = [];
     for idx_app = 1:length(apps)

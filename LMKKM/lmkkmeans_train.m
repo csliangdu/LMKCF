@@ -19,7 +19,7 @@ for iter = 1:parameters.iteration_count
     H = eigvec(:, eig_idx(1:parameters.cluster_count));
     %[H, ~] = eigs(K_Theta, parameters.cluster_count, 'la', opt);
     HHT = H * H';
-    if ~isempty(which('mskqpopt.m')) && N*P < 3000 && mskqpopt_status > 0
+    if ~isempty(which('mskqpopt.m')) && mskqpopt_status > 0
         Q = zeros(N * P, N * P);
         for m = 1:P
             start_index = (m - 1) * N + 1;
@@ -31,7 +31,7 @@ for iter = 1:parameters.iteration_count
             Theta = reshape(res.sol.itr.xx, N, P);
             mskqpopt_status = 1;
         else
-            Z = ones(nSmp, nKernel)/nKernel;
+            Theta = ones(N, P)/P;
             mskqpopt_status = 0;
         end
     else

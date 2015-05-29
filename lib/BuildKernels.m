@@ -35,7 +35,7 @@ if exist('kernel_type', 'var') && iscell(kernel_type)
 end
 PolynomialDegrees = [2, 4];
 PolyPlusDegrees = [2, 4];
-GaussianDegrees = [0.01, 0.05, 0.1, 1, 10, 50, 100];
+GaussianDegrees = 2.^(-5:2:5);
 
 
 if is_mv
@@ -113,11 +113,11 @@ for kernel_type = KernelTypes
                     kernel_file = fullfile(kernel_dir, strcat(kernel_path_part_1, kernel_path_part_2, kernel_path_part_3, '.mat'));
                     if ~exist(kernel_file, 'file')
                         D = EuDist2(X, [], 0);
-                        max_D = max(D(:));
-                        max_D = sqrt(max_D);
-                        kernel_option.t = kernel_option.t * max_D;
-                        K0 = constructKernel(X, [], kernel_option);
-                        % K0 = exp(- D / (2 * kernel_option.t^2) );
+                        sigma = mean(D(:));
+                        kernel_option.t = kernel_option.t * sigma;
+                        % K0 = constructKernel(X, [], kernel_option);
+                        K0 = exp(- D / kernel_option.t );
+                        K0 = max(K0, K0');
                         K = KernelNormalize(K0, iPost{1});%#ok
                         save(kernel_file, 'K');
                     end
