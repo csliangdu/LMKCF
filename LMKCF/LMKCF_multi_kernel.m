@@ -61,7 +61,7 @@ else
         t_start = clock;
         disp(['LMKCF ',  num2str(iRepeat), ' of ' num2str(nRepeat), ' iterations begin ...']);
 
-        [~, V, w_final, nIter_final, objhistory_final] = LMKCF_Multi(Ks, nClass, struct('maxIter', 20, 'nRepeat', 1), [], []);
+        [~, V, w_final, nIter_final, objhistory_final] = LMKCF_Multi(Ks, nClass, struct('maxIter', 10, 'nRepeat', 1), [], []);
         label_lmkcf = litekmeans(V, nClass, 'maxIter', 1000, 'Replicates', 20);
         lmkcf_res = [lmkcf_res; ClusteringMeasure(y, label_lmkcf)];%#ok<AGROW>
         obj_final = [obj_final; objhistory_final(end)];%#ok<AGROW>

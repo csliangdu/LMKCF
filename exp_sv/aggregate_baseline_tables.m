@@ -1,7 +1,7 @@
 function aggregate_baseline_tables(dataset, kernel_type)
 %
 prefix = fullfile(pwd, [dataset, '_res'], [dataset, '_res']);
-apps = {'kkm', 'sc', 'kcf', 'macf'};
+apps = {'kkm', 'sc', 'kcf', 'lccf', 'macf'};
 
 
 % load results with single kernel

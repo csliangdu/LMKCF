@@ -49,7 +49,7 @@ if isfield(options,'meanFitRatio')
 end
 
 Norm = 2;
-NormV = 1;
+NormV = 0;
 
 nSmp = size(Ks,1);
 nKernel = size(Ks,3);
